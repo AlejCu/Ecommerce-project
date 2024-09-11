@@ -1,0 +1,273 @@
+body {
+  width: 100%;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: #555454;
+  background-color: #fffdfd;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+/* header/nav bar */
+header {
+  width: 100%;
+  background-color: #202020;
+  padding: 20px 50px;
+  box-sizing: border-box;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__svg--button {
+  cursor: pointer;
+  fill: #fffdfd;
+}
+
+#header__img {
+  width: 150px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Banner */
+.banner {
+  background-image: url(/Code-Together/Img/nike-banner.png);
+  padding: 40px 0;
+  margin: 30px 0;
+}
+.banner h2, .banner #banner__description {
+  text-align: center;
+  color: #fffdfd;
+  font-size: 1.6em;
+  font-family: "Libre Franklin", sans-serif;
+  letter-spacing: 2px;
+}
+.banner h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Products */
+.article-title {
+  padding-left: 76px;
+  font-family: "Roboto", sans-serif;
+  color: #202020;
+}
+
+.clothes {
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.clothes .clothes__article--button {
+  margin: 50px;
+}
+.clothes .clothes__img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+}
+.clothes .clothes__title {
+  font-weight: 500;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+  font-family: "Roboto", sans-serif;
+}
+.clothes .clothes__price {
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #555454;
+  letter-spacing: 0;
+}
+.clothes .clothes__add-cart--button {
+  font-size: 1.2em;
+  padding: 5px;
+  margin: 0;
+  color: #202020;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 25px;
+  width: 100px;
+}
+.clothes .clothes__add-cart--button:hover {
+  background-color: #202020;
+  fill: #fffdfd;
+  color: #fffdfd;
+}
+
+.sneakers {
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.sneakers .sneakers__add-cart--button {
+  font-size: 1.2em;
+  padding: 5px;
+  margin: 0;
+  color: #202020;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 25px;
+  width: 100px;
+}
+.sneakers .sneakers__add-cart--button:hover {
+  background-color: #202020;
+  fill: #fffdfd;
+  color: #fffdfd;
+}
+.sneakers .sneakers__article--button {
+  margin: 50px;
+}
+.sneakers .sneakers__price {
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #555454;
+  letter-spacing: 0;
+}
+.sneakers .sneakers__title {
+  font-weight: 500;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+  font-family: "Roboto", sans-serif;
+}
+.sneakers .sneakers__img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+/* Cart */
+.cart {
+  width: 300px;
+  background-color: #fffdfd;
+  padding: 25px;
+  box-sizing: border-box;
+  height: 100%;
+  position: fixed;
+  right: -50%;
+  top: 100px;
+  box-shadow: -19px -1px 22px -15px rgb(0, 0, 0);
+}
+.cart h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 25px 0;
+  box-sizing: border-box;
+}
+.cart p {
+  font-size: 20px;
+}
+.cart div {
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart img {
+  width: 60px;
+}
+.cart div p:nth-child(2) {
+  font-weight: 700;
+}
+.cart div i {
+  width: 20px;
+  cursor: pointer;
+}
+.cart .delete-icon {
+  width: 100%;
+}
+
+/* Footer */
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__privacy {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.footer__privacy--text-item {
+  margin: 15px;
+}
+
+/* Media */
+@media (max-width: 768px) {
+  header {
+    padding: 15px;
+  }
+  header #header__img {
+    width: 70px;
+  }
+  .clothes {
+    grid-template-columns: repeat(auto-fit) minmax(200px, 1fr);
+  }
+  .clothes .clothes__img {
+    width: 150px;
+  }
+  .cart {
+    width: 400px;
+    top: 80px;
+  }
+  html {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .banner {
+    padding: 30px 0;
+  }
+  .banner h2 {
+    font-size: 16px;
+  }
+  .banner #banner-letters {
+    font-size: 18px;
+  }
+  .clothes {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  .clothes .clothes__img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+  .clothes .clothes__title, .clothes .clothes__price {
+    padding: 0 10px;
+    margin: 0;
+  }
+  .cart {
+    width: 100%;
+    box-shadow: none;
+  }
+  .cart #cart__title {
+    padding: 15px 0;
+  }
+  .cart .cart__product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cart .cart__img {
+    width: 100px;
+  }
+  .footer__privacy {
+    flex-direction: column;
+    align-items: center;
+  }
+}/*# sourceMappingURL=styles.css.map */

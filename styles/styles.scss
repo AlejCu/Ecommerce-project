@@ -1,0 +1,273 @@
+@import "./base";
+
+
+body {
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: #555454;
+    background-color: $secondary-color;
+    font-family: $text-font;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+/* header/nav bar */
+header {
+    width: 100%;
+    background-color:  $primary-color;
+    padding: 20px 50px;
+    box-sizing: border-box;
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+.header__svg--button {
+    cursor: pointer;
+    fill: $secondary-color;
+}
+
+#header__img {
+    width: 150px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+
+/* Banner */
+
+.banner {
+
+    background-image: url(/Code-Together/Img/nike-banner.png);
+    padding: 40px 0;
+    margin: 30px 0;
+
+    h2, #banner__description {
+        text-align: center;
+        color: $secondary-color;
+        font-size: 1.6em;
+        font-family: $text-font;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}
+
+/* Products */
+
+.article-title {
+    padding-left: 76px;
+    font-family: $title-font;
+    color: $primary-color;
+}
+
+.clothes {
+    
+    @include article-container;
+
+    .clothes__article--button {
+        margin: 50px;
+    }
+
+    .clothes__img {
+        @include article-img;
+    }
+
+    .clothes__title {
+        @include article-title;
+    }
+    
+    .clothes__price {
+        @include article-price;
+    }
+    
+    .clothes__add-cart--button {
+        @include cart-button;
+    }
+}
+
+.sneakers {
+    @include article-container;
+
+    .sneakers__add-cart--button {
+        @include cart-button
+    }
+
+    .sneakers__article--button {
+        margin: 50px
+    }
+
+    .sneakers__price {
+        @include article-price;
+    }
+
+    .sneakers__title {
+        @include article-title;
+    }
+
+    .sneakers__img {
+        @include article-img;
+    }
+}
+
+/* Cart */
+
+.cart {
+    width: 300px;
+    background-color: $secondary-color;
+    padding: 25px;
+    box-sizing: border-box;
+    height: 100%;
+    position: fixed;
+    right: -50%;
+    top: 100px;
+    box-shadow: -19px -1px 22px -15px rgba(0, 0, 0, 30);
+
+    h2 {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 25px 0;
+        box-sizing: border-box;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    div {
+        border-bottom: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    img {
+        width: 60px;
+    }
+
+    div p:nth-child(2) {
+        font-weight: 700;
+    }
+
+    div i {
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .delete-icon {
+        width: 100%;
+    }
+}
+
+/* Footer */
+
+.footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__privacy {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer__privacy--text-item {
+    margin: 15px;
+}
+
+/* Media */
+@media (max-width: 768px) {
+    
+    header {
+        padding: 15px;
+
+        #header__img {
+            width: 70px;
+        }
+    }
+
+    .clothes {
+        grid-template-columns: repeat(auto-fit) minmax(200px, 1fr);
+
+        .clothes__img {
+            width: 150px;
+        }
+    }
+
+    .cart {
+        width: 400px;
+        top: 80px;
+    }
+
+    html {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        padding: 30px 0;
+
+        h2 {
+            font-size: 16px;
+        }
+
+        #banner-letters {
+            font-size: 18px;
+        }
+    }
+
+    .clothes {
+        grid-template-columns: 1fr;
+        padding: 10px;
+
+        .clothes__img {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+    
+        .clothes__title, .clothes__price {   
+            padding: 0 10px;
+            margin: 0;
+        }
+    }
+
+    .cart {
+        width: 100%;
+        box-shadow: none;
+
+        #cart__title {
+            padding: 15px 0;
+        }
+    
+        .cart__product-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .cart__img {
+            width: 100px;
+        }
+    }
+
+    .footer__privacy {
+        flex-direction: column;
+        align-items: center;
+    }
+}
