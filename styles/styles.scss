@@ -4,7 +4,7 @@
 body {
     width: 100%;
     margin: 0;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
     color: #555454;
     background-color: $secondary-color;
@@ -33,6 +33,8 @@ header {
 .header__svg--button {
     cursor: pointer;
     fill: $secondary-color;
+
+    @include svg-icon-hover-white;
 }
 
 #header__img {
@@ -93,7 +95,7 @@ header {
     }
     
     .clothes__add-cart--button {
-        @include cart-button;
+        @include standard-button;
     }
 }
 
@@ -101,7 +103,7 @@ header {
     @include article-container;
 
     .sneakers__add-cart--button {
-        @include cart-button
+        @include standard-button
     }
 
     .sneakers__article--button {
@@ -173,6 +175,38 @@ header {
 }
 
 /* Footer */
+
+footer {
+    background-color: #ececec;
+}
+
+.footer__top-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .footer__newsletter {
+
+        fieldset {
+            border: 0;
+            display: flex;
+            flex-direction: column;
+
+                input {
+                    margin: 3px;
+                }
+
+                #submit-button {
+                    @include standard-button;
+                    margin: 4px auto;
+                    font-size: 12px;
+                }
+        }
+    }
+
+}
+
 
 .footer__contact {
     display: flex;

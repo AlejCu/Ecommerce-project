@@ -1,7 +1,7 @@
 body {
   width: 100%;
   margin: 0;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
   color: #555454;
   background-color: #fffdfd;
@@ -28,6 +28,9 @@ header nav {
 .header__svg--button {
   cursor: pointer;
   fill: #fffdfd;
+}
+.header__svg--button:hover {
+  fill: #bcbcbd;
 }
 
 #header__img {
@@ -95,13 +98,13 @@ header nav {
   color: #202020;
   cursor: pointer;
   text-align: center;
-  border-radius: 25px;
   width: 100px;
 }
 .clothes .clothes__add-cart--button:hover {
   background-color: #202020;
   fill: #fffdfd;
   color: #fffdfd;
+  transition: 0.09s ease;
 }
 
 .sneakers {
@@ -118,13 +121,13 @@ header nav {
   color: #202020;
   cursor: pointer;
   text-align: center;
-  border-radius: 25px;
   width: 100px;
 }
 .sneakers .sneakers__add-cart--button:hover {
   background-color: #202020;
   fill: #fffdfd;
   color: #fffdfd;
+  transition: 0.09s ease;
 }
 .sneakers .sneakers__article--button {
   margin: 50px;
@@ -191,6 +194,42 @@ header nav {
 }
 
 /* Footer */
+footer {
+  background-color: #ececec;
+}
+
+.footer__top-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.footer__top-container .footer__newsletter fieldset {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+}
+.footer__top-container .footer__newsletter fieldset input {
+  margin: 3px;
+}
+.footer__top-container .footer__newsletter fieldset #submit-button {
+  font-size: 1.2em;
+  padding: 5px;
+  margin: 0;
+  color: #202020;
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  margin: 4px auto;
+  font-size: 12px;
+}
+.footer__top-container .footer__newsletter fieldset #submit-button:hover {
+  background-color: #202020;
+  fill: #fffdfd;
+  color: #fffdfd;
+  transition: 0.09s ease;
+}
+
 .footer__contact {
   display: flex;
   flex-direction: column;
