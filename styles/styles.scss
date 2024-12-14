@@ -4,7 +4,7 @@
 body {
     width: 100%;
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     color: #555454;
     background-color: $secondary-color;
@@ -43,6 +43,45 @@ header {
     padding-bottom: 8px;
 }
 
+.nav__sidebarMenu {
+    @include side-menu;
+    left: -180px;
+    box-shadow: 7px 20px 14px -15px rgba(0, 0, 0, 30);
+    display: flex;
+    flex-direction: column;
+
+    a {
+        margin: 8px;
+        text-decoration: none;
+        color: #333;
+        fill: #333;
+        margin: 10px 0px;
+
+        &:hover {
+            color: #000000;
+            fill: #000000;
+        }
+    }
+
+    img {
+        width: 8em;
+    }
+}
+
+
+.cart__counter {
+    position: absolute;
+    color: $secondary-color;
+    background-color: #0257a7;
+    top: 38px;
+    right: 41px;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    align-items: center;
+}
+
 
 /* Banner */
 
@@ -50,7 +89,6 @@ header {
 
     background-image: url("../img/nike-banner.png");
     padding: 40px 0;
-    margin: 30px 0;
 
     h2, #banner__description {
         text-align: center;
@@ -74,12 +112,15 @@ header {
     color: $primary-color;
 }
 
-.clothes {
+.clothes, .sneakers {
     
     @include article-container;
 
     .clothes__article--button {
         margin: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .clothes__img {
@@ -99,54 +140,22 @@ header {
     }
 }
 
-.sneakers {
-    @include article-container;
-
-    .sneakers__add-cart--button {
-        @include standard-button
-    }
-
-    .sneakers__article--button {
-        margin: 50px
-    }
-
-    .sneakers__price {
-        @include article-price;
-    }
-
-    .sneakers__title {
-        @include article-title;
-    }
-
-    .sneakers__img {
-        @include article-img;
-    }
-}
 
 /* Cart */
 
 .cart {
+    @include side-menu;
+    right: -307px;
+    box-shadow: -7px 20px 14px -15px rgba(0, 0, 0, 30);
     width: 300px;
-    background-color: $secondary-color;
-    padding: 25px;
-    box-sizing: border-box;
-    height: 100%;
-    position: fixed;
-    right: -50%;
-    top: 100px;
-    box-shadow: -19px -1px 22px -15px rgba(0, 0, 0, 30);
 
     h2 {
         width: 100%;
         text-align: center;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
         padding: 25px 0;
         box-sizing: border-box;
-    }
-
-    p {
-        font-size: 20px;
     }
 
     div {

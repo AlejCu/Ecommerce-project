@@ -4,6 +4,18 @@ $title-font: "Roboto", sans-serif;
 $primary-color: #202020;
 $secondary-color: #fffdfd; 
 
+
+@mixin side-menu {
+    background-color: #fafafa;
+    padding: 25px;
+    box-sizing: border-box;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    font-size: 16px;
+}
+
+
 @mixin standard-button {
     font-size: 1.2em;
     padding: 5px;
@@ -11,7 +23,6 @@ $secondary-color: #fffdfd;
     color: $primary-color;
     cursor: pointer;
     text-align: center;
-    width: 100px;
 
     &:hover {
         background-color: $primary-color;
@@ -33,6 +44,7 @@ $secondary-color: #fffdfd;
     font-size: 1.3em;
     margin-bottom: 5px;
     font-family: $title-font;
+    margin: 0;
 }
 
 @mixin article-img {
