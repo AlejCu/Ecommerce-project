@@ -18,6 +18,8 @@ header {
   background-color: #202020;
   padding: 20px 50px;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
 }
 header nav {
   display: flex;
@@ -45,12 +47,15 @@ header nav {
   box-sizing: border-box;
   height: 100%;
   position: fixed;
-  top: 0px;
+  top: 12%;
   font-size: 16px;
-  left: -180px;
+  left: -50%;
   box-shadow: 7px 20px 14px -15px rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
+}
+.nav__sidebarMenu.show-nav {
+  left: 0;
 }
 .nav__sidebarMenu a {
   margin: 8px;
@@ -62,6 +67,7 @@ header nav {
 .nav__sidebarMenu a:hover {
   color: #000000;
   fill: #000000;
+  background-color: #fffdfd;
 }
 .nav__sidebarMenu img {
   width: 8em;
@@ -157,11 +163,15 @@ header nav {
   box-sizing: border-box;
   height: 100%;
   position: fixed;
-  top: 0px;
+  top: 12%;
   font-size: 16px;
-  right: -307px;
+  right: -50%;
   box-shadow: -7px 20px 14px -15px rgb(0, 0, 0);
-  width: 300px;
+  width: 360px;
+  transition: all 0.25s ease;
+}
+.cart.show {
+  right: 0;
 }
 .cart h2 {
   width: 100%;
@@ -189,6 +199,12 @@ header nav {
 }
 .cart .delete-icon {
   width: 100%;
+}
+.cart .cart__total {
+  justify-content: center;
+}
+.cart p {
+  font-size: 13px;
 }
 
 /* Footer */
