@@ -51,10 +51,21 @@ header {
     box-shadow: 7px 20px 14px -15px rgba(0, 0, 0, 30);
     display: flex;
     flex-direction: column;
+    transition: all .25s ease;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
 
     &.show-nav {
         left: 0;
     }
+
+
+    .sidebarMenu-icons {
+        display: flex;
+        flex-direction: column;
+    }
+
 
     a {
         margin: 8px;
@@ -69,10 +80,7 @@ header {
             background-color: $secondary-color;
         }
     }
-
-    img {
-        width: 8em;
-    }
+    
 }
 
 

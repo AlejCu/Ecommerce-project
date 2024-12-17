@@ -1,3 +1,17 @@
+//Car icon counter
+const cartSection = document.querySelector('.cart');
+const cartCounter = document.querySelector('.cart__counter');
+
+function updateCartCounter() {
+
+    const products = cartSection.querySelectorAll('.cart__product-container');
+    
+    cartCounter.textContent = products.length;
+}
+
+updateCartCounter();
+
+
 //Remove items from cart
 let removeCartButton = document.getElementsByClassName('cart__delete-icon--button');
 
@@ -13,46 +27,60 @@ for (let i = 0; i < removeCartButton.length; i++) {
             productContainer.remove();
         }
 
+        updateCartCounter();
+
     });
 }
 
 
 //Toggle menu cart
-const header = document.querySelector('header');
-const cartToggle = header.lastElementChild;
-const cart = document.querySelector('.cart');
+const cartMenu = document.getElementById('cart__icon-button');
+const cart = document.querySelector('.cart'); 
 
-cartToggle.addEventListener('click', () => {
-    cart.classList.toggle("show");
-})
+
+cartMenu.addEventListener('click', () => {
+    cart.classList.toggle('show');
+});
+
+
 
 
 //Toggle menu nav
+const mainMenu = document.getElementById('menu__icon-button')
+const menu = document.querySelector('.nav__sidebarMenu')
 
-const navMenu = document.querySelector('nav')
-const navToggle = navMenu.lastElementChild;
-const navSide = document.querySelector('nav__sidebarMenu')
+mainMenu.addEventListener('click', () => {
+    menu.classList.toggle('show-nav')
+})
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle("show-nav");
-});
+
+
 
 //Total Counter
-//-------------------------ARREGLAR DESPUES-------------------------
 function cartTotal() {
-    let cartPrice = document.getElementsByClassName('cart__price');
-
+    const cartPrices = document.querySelectorAll('.cart__price');
     let total = 0;
 
-    for (let i = 0; i < cartPrices.length; i++) {
+    cartPrices.forEach(priceElement => {
+        const price = parseFloat(priceElement.innerText.replace('$', '').replace(',', ''));
+        if (!isNaN(price)) {
+            total += price; 
+        }
+    });
 
-        let cartPriceItem = parseFloat(cartPrices[i].innerText.replace('$', '').replace(',', ''));
+    
+    document.getElementById('cart__total-amount').innerText = `$${total.toFixed(2)}`;
+}
 
-        if (!isNaN(cartPriceItem)) { 
-            total += cartPriceItem;
+
+document.addEventListener('click', (event) => {
+    if (event.target.closest('.cart__delete-icon--button')) {
+        const productContainer = event.target.closest('.cart__product-container');
+        if (productContainer) {
+            productContainer.remove();
+            cartTotal();
         }
     }
+});
 
-    document.getElementById('cart__total-amount').innerText = `$${total.toFixed(2)}`;
-
-}
+cartTotal();
