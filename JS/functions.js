@@ -12,6 +12,25 @@ function updateCartCounter() {
 updateCartCounter();
 
 
+//add items to cart
+const addToCart = document.getElementsByClassName('clothes__add-cart--button');
+for (let i = 0; i < addToCart.length; i++) {
+    let addButton = addToCart[i]; 
+    addButton.addEventListener('click', addToCartClick);
+}
+
+function addToCartClick(event) {
+    let cartButton = event.target;
+    let shopItem = cartButton.parentElement.parentElement;
+    let title = shopItem.querySelector('.clothes__title').innerText;
+    let price = shopItem.querySelector('.clothes__price').innerText;
+    let image = shopItem.querySelector('.clothes__img').src;
+
+    console.log(title, price, image);
+}
+
+
+
 //Remove items from cart
 let removeCartButton = document.getElementsByClassName('cart__delete-icon--button');
 
