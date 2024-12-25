@@ -1,4 +1,4 @@
-//Car icon counter
+//Cart icon counter
 const cartSection = document.querySelector('.cart');
 const cartCounter = document.querySelector('.cart__counter');
 
@@ -12,7 +12,7 @@ function updateCartCounter() {
 updateCartCounter();
 
 
-//add items to cart
+//Add items to cart
 const addToCart = document.getElementsByClassName('clothes__add-cart--button');
 for (let i = 0; i < addToCart.length; i++) {
     let addButton = addToCart[i]; 
@@ -20,16 +20,34 @@ for (let i = 0; i < addToCart.length; i++) {
 }
 
 function addToCartClick(event) {
-    let cartButton = event.target;
-    let shopItem = cartButton.parentElement.parentElement;
+    let cartButton = event.currentTarget;
+    let shopItem = cartButton.closest('.clothes__article--button');
     let title = shopItem.querySelector('.clothes__title').innerText;
     let price = shopItem.querySelector('.clothes__price').innerText;
     let image = shopItem.querySelector('.clothes__img').src;
 
-    console.log(title, price, image);
+    addItemtoCart(title, price, image);
 }
 
+function addItemtoCart(title, price, image) {
+    let cartRow = document.createElement('div');
+    cartRow.classList.add('cart__product-container');
+    let cartItems = document.getElementsByClassName('cart__items-container')[0];
+    let cartRowContainer = `
+        <img class="cart__img" src="${image}" alt="${title}">
+        <p class="cart__description">${title}</p>
+        <p class="cart__price">${price}</p>
+        <i class="cart__delete-icon--button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 512 512">
+                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 0 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+            </svg>
+        </i>`;
+    cartRow.innerHTML = cartRowContainer;
+    cartItems.append(cartRow);
+    updateCartCounter();
+}
 
+    
 
 //Remove items from cart
 let removeCartButton = document.getElementsByClassName('cart__delete-icon--button');
@@ -98,6 +116,7 @@ document.addEventListener('click', (event) => {
         if (productContainer) {
             productContainer.remove();
             cartTotal();
+            updateCartCounter();
         }
     }
 });
