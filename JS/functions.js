@@ -45,6 +45,7 @@ function addItemtoCart(title, price, image) {
     cartRow.innerHTML = cartRowContainer;
     cartItems.append(cartRow);
     updateCartCounter();
+    cartTotal();
 }
 
     
@@ -65,6 +66,7 @@ for (let i = 0; i < removeCartButton.length; i++) {
         }
 
         updateCartCounter();
+        cartTotal();
 
     });
 }
