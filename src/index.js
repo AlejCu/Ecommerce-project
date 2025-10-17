@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
+import { GlobalStyles } from './globalStyles.ts';
+
 
 // Components imports
 import { Footer } from './components/footer/footer.jsx';
@@ -11,6 +13,7 @@ function App() {
 
   return (
     <React.StrictMode>
+      <GlobalStyles />
       <Header cartCount={cartCount} />
       <ShopPage setCartCount={setCartCount} />
       <Footer />
