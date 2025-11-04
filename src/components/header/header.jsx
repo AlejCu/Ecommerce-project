@@ -1,0 +1,124 @@
+import { HeaderStyles } from "./headerStyles.ts";
+import React, { useState, useEffect } from 'react';
+
+//icon inmports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+
+function Header ({ cartCount, cartItems, dispatch }) {
+    
+    //LOGIC FOR THE POP-UP MENUS
+    //Handles the boolean to show or hide the cart menu
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleCart = () => setIsOpen(prev => !prev);
+
+    //Handles the boolean to show or hide the side menu
+    const [sideMenuOpen, setSideMenuOpen] = useState(false);
+    const toggleSideMenu = () => setSideMenuOpen(prev => !prev);
+
+    //Handles the logic to switch in between the opacity when opening a menu
+    const [opacityOpen, setOpacityOpen] = useState(false);
+    useEffect(() => {
+        if (isOpen || sideMenuOpen) {
+            setOpacityOpen(true);
+        } else {
+            setOpacityOpen(false);
+        }
+    }, [isOpen, sideMenuOpen]);
+
+    //Logic to calculate the total price of the items in the cart
+     const cartTotal = cartItems.reduce((sum, item) => {
+        return sum + (Number(item.price) * Number(item.quantity));
+    }, 0);
+
+    const formatCurrency = (value) =>
+        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+
+    return (
+        <HeaderStyles>
+            
+        <button onClick={toggleSideMenu}>
+            <FontAwesomeIcon icon={faBars} />
+        </button>
+
+        <img alt="test"/>  
+
+        <div className="header_container-left">
+            
+            <button onClick={toggleCart}>
+                <FontAwesomeIcon icon={faCartShopping} />
+                <span className="cart_counter">{cartCount}</span>
+            </button>
+            
+        </div>
+
+        {/*Cart Menu*/}
+        <div className={isOpen ? "header_cart-open" : "header_cart-close"}>
+            <div className="header_cart-hide-icon">
+                <button onClick={toggleCart}>
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                </button>
+            </div>
+
+            <div className="header_cart-items">
+                <FontAwesomeIcon icon={faCartShopping} />
+                <h1>My cart</h1>
+
+                {cartItems.length === 0 ? (
+                    <p>Tu carrito está vacío</p>
+                ) : (
+                cartItems.map((item) => (
+                    <div key={item.id + item.size} className="cart-item">
+                        <img src={item.image} alt={item.name} width={50} />
+                        <div>
+                            <p>{item.name}</p>
+                            {/* Logic to show the price for total items in the cart */}
+                            {item.quantity > 1 ? (
+                                <p>
+                                ${(Number(item.price) * item.quantity).toFixed(2)}
+                                </p>
+                            ) : (
+                                <p>${Number(item.price).toFixed(2)}</p>
+                            )}
+                            <p>Size: {item.size}</p>
+                            <p>Quantity: {item.quantity}</p>
+
+                            <button onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: item })}>
+                                -
+                            </button>
+                            <button onClick={() => dispatch({ type: "INCREASE_QUANTITY", payload: item })}>
+                                +
+                            </button>
+                            <button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item })}>
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                    ))
+        )}
+            {cartItems.length > 0 && (
+                <div className="cart-total">
+                    <strong>Total: {formatCurrency(cartTotal)}</strong>
+                </div>
+            )}
+            </div>
+        </div>
+
+        {/*Side Menu*/}
+        <div className={sideMenuOpen ? "header_sideMenu-open" : "header_sideMenu-close"}>
+            <div className="header_sideMenu-hide-icon">
+                <button onClick={toggleSideMenu}>
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                </button>
+            </div>
+        </div>
+
+        {/*Container that switches in between visible or not when a menu is open*/}
+        <div onClick={toggleSideMenu} className={opacityOpen ? "header_menu-opacity-open" : "header_menu-opacity-close"}></div>
+    </HeaderStyles>
+    );
+}
+
+export { Header };
