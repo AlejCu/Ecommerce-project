@@ -41,6 +41,7 @@ export const ShopStyles = styled.section`
             padding: 5px;
             cursor: pointer;
             font-size: 14px;
+            transition: background-color 0.4s ease;
 
             &:hover {
                 background-color: #333;
@@ -67,7 +68,7 @@ export const ShopStyles = styled.section`
     .product_section-cont {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         
         img {
             width: 250px;
@@ -82,7 +83,7 @@ export const ShopStyles = styled.section`
     }
 
     .product_container {
-        padding: 25px 10px;
+        padding: 25px 8px;
     }
 
     .product_image {
@@ -92,6 +93,7 @@ export const ShopStyles = styled.section`
         &:hover {
             background-color: #e4e4e4ff;
             transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     }
 
@@ -104,6 +106,7 @@ export const ShopStyles = styled.section`
         background-color: #dbdbdb;
         padding: 10px;
         border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .product_info-right {
