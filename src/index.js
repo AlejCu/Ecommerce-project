@@ -8,6 +8,7 @@ import { Footer } from './components/footer/footer.jsx';
 import { Header } from './components/header/header.jsx';
 import { ShopPage } from './components/shopPage/shopPage.jsx';
 import { ItemDetails } from './components/itemDetails/itemDetails.jsx';
+import { PaymentPage } from './components/paymentPage/paymentPage.jsx';
 
 //Reducer that handles the cart logic
 function cartReducer(state, action) {
@@ -93,18 +94,21 @@ function App() {
 
   //Handles the total count of items in the cart
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  //Logic to calculate the total price of the items in the cart
+  const cartTotal = cartItems.reduce((sum, item) => sum + Number(item.price) * item.quantity, 0);
 
   return (
     <React.StrictMode>
       <GlobalStyles />
-      <Header cartCount={cartCount} cartItems={cartItems} dispatch={dispatch} />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ShopPage onAddToCart={handleAddToCart} />} />
-          <Route path="/item/:id" element={<ItemDetails onAddToCart={handleAddToCart} />} />
-        </Routes>
+        <Header cartCount={cartCount} cartItems={cartItems} cartTotal={cartTotal} dispatch={dispatch} />
+          <Routes>
+            <Route path="/" element={<ShopPage onAddToCart={handleAddToCart} />} />
+            <Route path="/item/:id" element={<ItemDetails onAddToCart={handleAddToCart} />} />
+            <Route path="/payment" element={<PaymentPage cartItems={cartItems} cartTotal={cartTotal} dispatch={dispatch}  />} />
+          </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </React.StrictMode>
   );
 }
