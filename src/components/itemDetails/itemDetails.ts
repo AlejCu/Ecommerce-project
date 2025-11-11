@@ -130,8 +130,10 @@ export const ItemDetailsStyles = styled.section`
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding: 20px;
         border-radius: 25px;
+        background-color: #dbdbdb;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding-top: 20px;
 
         h2 {
             font-size: 28px;
@@ -142,9 +144,6 @@ export const ItemDetailsStyles = styled.section`
         display: flex;
         justify-content: flex-start;
         width: 97%;
-        padding: 10px;
-        background-color: #b1b1b1;
-        border-radius: 25px 25px 0 0;
         
         h2 {
             font-family: "Roboto", sans-serif;
@@ -156,12 +155,14 @@ export const ItemDetailsStyles = styled.section`
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        padding: 15px;
         width: 97%;
         overflow-x: auto;
-        border-radius: 0 0 25px 25px;
-        background-color: #dbdbdb;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        gap: 15px;
+        scrollbar-width: thin;
+        scrollbar-color: #dbdbdb #dbdbdb;
+        overscroll-behavior: contain;
+        scroll-behavior: smooth;
 
         img {
             width: 200px;

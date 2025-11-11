@@ -23,6 +23,18 @@ function ItemDetails({ onAddToCart }) {
         )
     );
 
+    //Blocks vertical scrolling when hovering over the recommendations section and allows horizontal scrolling instead
+    const handleRecommendationsWheel = (e) => {
+      const container = e.currentTarget;
+
+        if (container.scrollWidth > container.clientWidth) {
+            e.preventDefault();
+            container.scrollBy({
+            left: e.deltaY * 3, // Adjust scroll speed as needed
+            behavior: "smooth"
+            });
+        }
+    };
 
     if (!product) return <p>Producto no encontrado</p>;
 
@@ -70,7 +82,8 @@ function ItemDetails({ onAddToCart }) {
                     <h2>Similar Products</h2>
                 </div>
 
-                <div className="itemDetails_recommendations-container">
+                <div className="itemDetails_recommendations-container" 
+                onWheel={handleRecommendationsWheel}>
                     {filteredRecommendations.map(recommendation => (
                         <div className="recommendation_card" key={recommendation.id}>
                             <Link to={`/item/${recommendation.id}`} data-id={recommendation.id} key={recommendation.id}>
