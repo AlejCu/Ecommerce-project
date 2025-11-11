@@ -1,18 +1,29 @@
 import { HeaderStyles } from "./headerStyles.ts";
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //icon inmports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
-function Header ({ cartCount, cartItems, dispatch }) {
+function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
     
     //LOGIC FOR THE POP-UP MENUS
     //Handles the boolean to show or hide the cart menu
     const [isOpen, setIsOpen] = useState(false);
     const toggleCart = () => setIsOpen(prev => !prev);
+
+    //Closes both menus when clicking the opacity container
+    const handleOverlayClick = () => {
+       setIsOpen(false);
+        setSideMenuOpen(false);
+    };
 
     //Handles the boolean to show or hide the side menu
     const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -28,10 +39,6 @@ function Header ({ cartCount, cartItems, dispatch }) {
         }
     }, [isOpen, sideMenuOpen]);
 
-    //Logic to calculate the total price of the items in the cart
-     const cartTotal = cartItems.reduce((sum, item) => {
-        return sum + (Number(item.price) * Number(item.quantity));
-    }, 0);
 
     const formatCurrency = (value) =>
         new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
@@ -58,7 +65,7 @@ function Header ({ cartCount, cartItems, dispatch }) {
         <div className={isOpen ? "header_cart-open" : "header_cart-close"}>
             <div className="header_cart-hide-icon">
                 <button onClick={toggleCart}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
+                    <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             </div>
 
@@ -67,13 +74,15 @@ function Header ({ cartCount, cartItems, dispatch }) {
                 <h1>My cart</h1>
 
                 {cartItems.length === 0 ? (
-                    <p>Tu carrito está vacío</p>
+                    <p>Your cart is empty</p>
                 ) : (
                 cartItems.map((item) => (
                     <div key={item.id + item.size} className="cart-item">
-                        <img src={item.image} alt={item.name} width={50} />
-                        <div>
-                            <p>{item.name}</p>
+                        <Link to={`/item/${item.id}`} data-id={item.id} key={item.id} onClick={toggleCart}>
+                            <img src={item.image} alt={item.name}/>
+                        </Link>
+                        <div className="header_cart-items-info">
+                            <h2>{item.name}</h2>
                             {/* Logic to show the price for total items in the cart */}
                             {item.quantity > 1 ? (
                                 <p>
@@ -83,24 +92,37 @@ function Header ({ cartCount, cartItems, dispatch }) {
                                 <p>${Number(item.price).toFixed(2)}</p>
                             )}
                             <p>Size: {item.size}</p>
-                            <p>Quantity: {item.quantity}</p>
 
-                            <button onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: item })}>
-                                -
-                            </button>
-                            <button onClick={() => dispatch({ type: "INCREASE_QUANTITY", payload: item })}>
-                                +
-                            </button>
-                            <button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item })}>
-                                Remove
-                            </button>
+                            <div className="header_cart-items-quantity">
+                                <button onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: item })}>
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </button>
+
+                                <p>{item.quantity}</p>
+
+                                <button onClick={() => dispatch({ type: "INCREASE_QUANTITY", payload: item })}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </button>
+                            </div>
+
+                            <div className="header_cart-items-remove">
+                                <button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item })}>
+                                    <FontAwesomeIcon icon={faTrashCan} />
+                                </button>
+                            </div>
                         </div>
                     </div>
                     ))
         )}
             {cartItems.length > 0 && (
                 <div className="cart-total">
-                    <strong>Total: {formatCurrency(cartTotal)}</strong>
+                    <p>Total: {formatCurrency(cartTotal)}</p>
+
+                    <Link to={`/payment`} onClick={toggleCart}>
+                        <button>
+                            Pay Now!
+                        </button>
+                    </Link>
                 </div>
             )}
             </div>
@@ -110,13 +132,13 @@ function Header ({ cartCount, cartItems, dispatch }) {
         <div className={sideMenuOpen ? "header_sideMenu-open" : "header_sideMenu-close"}>
             <div className="header_sideMenu-hide-icon">
                 <button onClick={toggleSideMenu}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
+                    <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
             </div>
         </div>
 
         {/*Container that switches in between visible or not when a menu is open*/}
-        <div onClick={toggleSideMenu} className={opacityOpen ? "header_menu-opacity-open" : "header_menu-opacity-close"}></div>
+        <div onClick={handleOverlayClick} className={opacityOpen ? "header_menu-opacity-open" : "header_menu-opacity-close"}></div>
     </HeaderStyles>
     );
 }
