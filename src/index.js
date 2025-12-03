@@ -9,6 +9,7 @@ import { Header } from './components/header/header.jsx';
 import { ShopPage } from './components/shopPage/shopPage.jsx';
 import { ItemDetails } from './components/itemDetails/itemDetails.jsx';
 import { PaymentPage } from './components/paymentPage/paymentPage.jsx';
+import { Disclaimer } from './components/disclaimer/disclaimer.jsx';
 
 //Reducer that handles the cart logic
 function cartReducer(state, action) {
@@ -106,6 +107,7 @@ function App() {
             <Route path="/" element={<ShopPage onAddToCart={handleAddToCart} />} />
             <Route path="/item/:id" element={<ItemDetails onAddToCart={handleAddToCart} />} />
             <Route path="/payment" element={<PaymentPage cartItems={cartItems} cartTotal={cartTotal} dispatch={dispatch}  />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
           </Routes>
         <Footer />
       </BrowserRouter>
