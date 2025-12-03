@@ -28,7 +28,7 @@ function Footer () {
             </div>
 
             <div className="footer_privacy">
-                
+                <p>This is not an actual shop. All products shown are for demo purposes only and do not exist in real life.</p>
             </div>
         </FooterStyles>
     )
