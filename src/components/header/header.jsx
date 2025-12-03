@@ -2,6 +2,7 @@ import { HeaderStyles } from "./headerStyles.ts";
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 //icon inmports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +12,10 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 
 function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
     
@@ -46,18 +51,20 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
     return (
         <HeaderStyles>
             
-        <button onClick={toggleSideMenu}>
+        <button className="header_button" onClick={toggleSideMenu}>
             <FontAwesomeIcon icon={faBars} />
         </button>
 
-        <img alt="test"/>  
+        <Link className="header_button" to="/">
+            <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
+        </Link>
 
         <div className="header_container-left">
             
-            <button onClick={toggleCart}>
+            <button className="header_button" onClick={toggleCart}>
                 <FontAwesomeIcon icon={faCartShopping} />
-                <span className="cart_counter">{cartCount}</span>
             </button>
+            <span className="cart_counter">{cartCount}</span>
             
         </div>
 
@@ -134,6 +141,25 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                 <button onClick={toggleSideMenu}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
+            </div>
+            <div className="header_sideMenu-container">
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/" onClick={toggleSideMenu}>Home <FontAwesomeIcon icon={faHouse} /></Link>
+                        </li>
+                        <li>
+                            <Link to="/" onClick={toggleSideMenu}>Shop <FontAwesomeIcon icon={faBasketShopping} /></Link>
+                        </li>
+                        <li>
+                            <Link to="/disclaimer" onClick={toggleSideMenu}>Discalimer <FontAwesomeIcon icon={faTriangleExclamation} /></Link>
+                        </li>
+                        <li>
+                            <Link to="" onClick={toggleSideMenu}>Contact us <FontAwesomeIcon icon={faPhoneVolume} /></Link>
+                        </li>
+                    </ul>
+                </nav>
+                <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
             </div>
         </div>
 

@@ -49,7 +49,7 @@ export const cartButtonStyles = `
 
     svg {
         font-size: 14px;
-        }
+    }
 
     &:hover {
         transform: scale(1.05);
@@ -70,7 +70,25 @@ export const HeaderStyles = styled.header`
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 60px;
+    
+    .header_button {
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: scale(1.08);
+            transition: all 0.2s ease;
+        }
+
+        &:active {
+            transform: scale(0.95);
+            transition: scale 0.2s ease;
+        }
+    }
+
+    img {
+        width: 80px;
+        image-rendering: pixelated;
+    }
 
     svg {
         font-size: 25px;
@@ -79,17 +97,10 @@ export const HeaderStyles = styled.header`
     .header_container-left {
         display: flex;
         align-items: center;
-    }
-
-    button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        align-items: center;
 
         span {
             position: absolute;
-            top: 9px;
+            top: 22px;
             right: 13px;
             background-color: #217de6ff;
             color: white;
@@ -98,6 +109,13 @@ export const HeaderStyles = styled.header`
             font-size: 12px;
             opacity: 0.9;
         }
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        align-items: center;
     }
 
     /*Cart Styling*/
@@ -136,11 +154,11 @@ export const HeaderStyles = styled.header`
 
         img {
             width: 150px;
-            rendering: pixelated;
+            image-rendering: pixelated;
         }            
 
         h2 {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
         }
 
@@ -243,5 +261,19 @@ export const HeaderStyles = styled.header`
     .header_sideMenu-hide-icon {
         ${menuCloseIcon}
         align-items: flex-start;
+    }
+
+    .header_sideMenu-container {
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 30px;
+
+        nav {
+            width: 100%;
+        }
     }
 `;
