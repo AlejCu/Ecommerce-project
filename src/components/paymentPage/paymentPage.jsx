@@ -1,14 +1,29 @@
 import { useEffect, useRef } from "react";
+import { PaymentPageStyles } from './paymentPageStyles.ts';
+import { Link } from 'react-router-dom';
+
+//icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 function PaymentPage({ cartItems, cartTotal, dispatch }) {
     const cardNumberRef = useRef(null);
     const expDateRef = useRef(null);
+    const formRef = useRef(null);
+    const statusRef = useRef(null);
 
     useEffect(() => {
         const cardNumber = cardNumberRef.current;
         const expDate = expDateRef.current;
+        const form = document.getElementById("payment_method-form");
+        const status = document.getElementById("status");
 
-        if (!cardNumber || !expDate) return;
+        if (!cardNumber || !expDate || !form || !status) return;
 
         //Formats the card numbers to only allow numbers and display in groups of 4
         const handleCardInput = (e) => {
@@ -36,85 +51,294 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
             e.target.value = value;
         };
 
+        //Email Validator
+        const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        //Phone Validator
+        const validatePhone = (phone) => /^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/.test(phone);
+
         cardNumber.addEventListener("input", handleCardInput);
         expDate.addEventListener("input", handleExpInput);
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+
+            const emailInput = form["billing-email"];
+            const phoneInput = form["billing-phone"];
+
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            let hasErrors = false;
+
+            //Function to set error messages
+            const setError = (input, message) => {
+                const span = input.nextElementSibling;
+                if (span && span.classList.contains("payment_method-error")) {
+                    span.textContent = message;
+                }
+            };
+
+            //Clears all previous errors
+            form.querySelectorAll(".payment_method-error").forEach((span) => {
+                span.textContent = "";
+            });
+
+            //Required fields validation
+            const requiredFields = form.querySelectorAll("input[required]");
+            requiredFields.forEach((input) => {
+                if (!input.value.trim()) {
+                    setError(input, `*`);
+                    hasErrors = true;
+                }
+            });
+
+            //Email validation
+            if (!email) {
+                setError(emailInput, "*");
+                hasErrors = true;
+            } else if (!validateEmail(email)) {
+                setError(emailInput, "Invalid email format.");
+                hasErrors = true;
+            }
+
+            //Phone validation
+            if (!phone) {
+                setError(phoneInput, "*");
+                hasErrors = true;
+            } else if (!validatePhone(phone)) {
+                setError(phoneInput, "Invalid phone number format.");
+                hasErrors = true;
+            }
+
+            //Final status message
+            if (hasErrors) {
+                status.textContent = "Please fill in the required fields marked with a asterisk (*)";
+                status.style.color = "#f10000ff";
+                return;
+            }
+
+            status.textContent = "Form submitted successfully!";
+            status.style.color = "green";
+            form.reset();
+        };
+
+    // --- Add Event Listeners ---
+    cardNumber.addEventListener("input", handleCardInput);
+    expDate.addEventListener("input", handleExpInput);
+    form.addEventListener("submit", handleSubmit);
 
         //Cleanup event listeners on unmount
         return () => {
             cardNumber.removeEventListener("input", handleCardInput);
             expDate.removeEventListener("input", handleExpInput);
+            form.removeEventListener("submit", handleSubmit);
         };
     }, []);
 
     return (
-        <section className="payment_page">
-        <h1>Payment Page</h1>
-        <div className="payment_items-container">
-            {(cartItems || []).map((item) => (
-            <div key={item.id + item.size}>
-                <img src={item.image} alt={item.name} />
-                <h2>{item.name}</h2>
-                <p>{item.price}</p>
-                <p>Size: {item.size}</p>
-                <p>Quantity: {item.quantity}</p>
+        <PaymentPageStyles>
+            <h1>Payment Page</h1>
+
+            <div className="payment_main-container">
+                <div className="payment_items-container">
+                    <div className="payment_items-title">
+                        <h2>Cart Items</h2>
+                        <FontAwesomeIcon id="payment_items-title-cont" icon={faCartShopping} />
+                    </div>
+                    <div className="payment_items-card-cont">
+                        {(cartItems || []).map((item) => (
+                        <div className="payment_items-card" key={item.id + item.size}>
+                            <Link to={`/item/${item.id}`} data-id={item.id} key={item.id}>
+                                <img src={item.image} alt={item.name} />
+                            </Link>
+                            <div className="payment_items-info">
+                                <h3>{item.name}</h3>
+                                <p>${item.price}</p>
+                                <p>Size: {item.size}</p>
+                                <div className="payment_items-quantity">
+                                    <button onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: item })}>
+                                        <FontAwesomeIcon icon={faMinus} />
+                                    </button>
+                                
+                                    <p>{item.quantity}</p>
+                                
+                                    <button onClick={() => dispatch({ type: "INCREASE_QUANTITY", payload: item })}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                        </button>
+                                </div>
+                                
+                                <div className="payment_items-remove">
+                                    <button onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item })}>
+                                        <FontAwesomeIcon icon={faTrashCan} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                    <div className="payment_items-total">
+                        <p>Total: ${cartTotal.toFixed(2)}</p>
+                    </div>
+                </div>
+
+                <div className="payment_method-container">
+                    <div className="payment_method-child-container">
+                    <form id="payment_method-form" autoComplete="on" noValidate ref={formRef}>
+                        <h2>Payment Method</h2>
+                        <div className="payment_method-name">
+                            <label htmlFor="cc-name">Cardholder Name: </label>
+                            <input
+                                type="text"
+                                id="cc-name"
+                                name="cc-name"
+                                autoComplete="cc-name"
+                                placeholder="John Doe"
+                                required
+                            />
+                            <span className="payment_method-error"></span>
+                            <FontAwesomeIcon icon={faUser} />
+                        </div>
+
+                        <div className="payment_method-number">
+                            <label htmlFor="cc-number">Card Number: </label>
+                            <input
+                                type="text"
+                                id="cc-number"
+                                name="cc-number"
+                                autoComplete="cc-number"
+                                placeholder="1234 5678 9012 3456"
+                                maxLength="19"
+                                ref={cardNumberRef}
+                                required
+                            />
+                            <span className="payment_method-error"></span>
+                            <FontAwesomeIcon icon={faCreditCard} />
+                        </div>
+
+                        <div className="payment_method-details">
+                            <label htmlFor="cc-exp">Expiration Date: </label>
+                            <input
+                                type="text"
+                                id="cc-exp"
+                                name="cc-exp"
+                                autoComplete="cc-exp"
+                                placeholder="MM/YY"
+                                maxLength="5"
+                                ref={expDateRef}
+                                required
+                            />
+                            <span className="payment_method-error"></span>
+                            <label htmlFor="cc-csc">CVV: </label>
+                            <input
+                                type="text"
+                                id="cc-csc"
+                                name="cc-csc"
+                                autoComplete="cc-csc"
+                                placeholder="123"
+                                maxLength="4"
+                                required
+                            />
+                            <span className="payment_method-error"></span>
+
+                        </div>
+                        <div className="payment_method-billing">
+                            <h3>Billing Address</h3>
+                            <div className="payment_method-billing-contact">
+                                <div className="payment_method-billing-container">
+                                        <label htmlFor="billing-name"></label>
+                                        <input
+                                            type="text"
+                                            id="billing-name"
+                                            name="billing-name"
+                                            autoComplete="billing name"
+                                            placeholder="Full Name"
+                                            required
+                                        />
+                                        <span className="payment_method-error"></span>
+                                    </div>
+                                    <div className="payment_method-billing-container">
+                                        <label htmlFor="billing-email"></label>
+                                        <input
+                                            type="email"
+                                            id="billing-email"
+                                            name="billing-email"
+                                            autoComplete="billing email"
+                                            placeholder="email@email.com"
+                                        />
+                                        <span className="payment_method-error"></span>
+                                    </div>
+                                    <div className="payment_method-billing-container">
+                                        <label htmlFor="billing-phone"></label>
+                                        <input
+                                            type="tel"
+                                            id="billing-phone"
+                                            name="billing-phone"
+                                            autoComplete="billing tel"
+                                            placeholder="(123) 456-7890"
+                                        />
+                                        <span className="payment_method-error"></span>
+                                    </div>
+                                </div>
+
+                                <div className="payment_method-billing-str">
+                                    <label htmlFor="billing-address"></label>
+                                    <input
+                                        type="text"
+                                        id="billing-address"
+                                        name="billing-address"
+                                        autoComplete="billing address-line1"
+                                        placeholder="123 Main St"
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                </div>
+                                <div className="payment_method-billing-CityState">
+                                    <label htmlFor="billing-city"></label>
+                                    <input
+                                        type="text"
+                                        id="billing-city"
+                                        name="billing-city"
+                                        autoComplete="billing address-level2"
+                                        placeholder="City"
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                    <label htmlFor="billing-state"></label>
+                                    <input
+                                        type="text"
+                                        id="billing-state"
+                                        name="billing-state"
+                                        autoComplete="billing address-level1"
+                                        placeholder="State"
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                </div>
+                                <div className="payment_method-billing-zip">
+                                    <label htmlFor="billing-zip"></label>
+                                    <input
+                                        type="text"
+                                        id="billing-zip"
+                                        name="billing-zip"
+                                        autoComplete="billing postal-code"
+                                        placeholder="ZIP Code"
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                </div>
+                            </div>
+                            <button type="submit">Proceed to Pay</button>
+                        </form>
+                        <p id="status" ref={statusRef}></p>
+                    </div>
+                    <div className="payment_method-disclaimer">
+                        <h2>Disclaimer</h2>
+                        <p>This page is for demonstration purposes only. filling in the payment form will not trigger any real payment. Feel free to test how it works!!</p>
+                    </div>
+                </div>
             </div>
-            ))}
-            <p>Total: ${cartTotal.toFixed(2)}</p>
-        </div>
-
-        <div className="payment_method-container">
-            <h2>Payment Method</h2>
-            <form id="payment_method-form" autoComplete="on" noValidate>
-            <label htmlFor="cc-name">Name on Card:</label>
-            <input
-                type="text"
-                id="cc-name"
-                name="cc-name"
-                autoComplete="cc-name"
-                placeholder="John Doe"
-                required
-            />
-
-            <label htmlFor="cc-number">Card Number:</label>
-            <input
-                type="text"
-                id="cc-number"
-                name="cc-number"
-                autoComplete="cc-number"
-                placeholder="1234 5678 9012 3456"
-                maxLength="19"
-                ref={cardNumberRef}
-                required
-            />
-
-            <label htmlFor="cc-exp">Expiration Date:</label>
-            <input
-                type="text"
-                id="cc-exp"
-                name="cc-exp"
-                autoComplete="cc-exp"
-                placeholder="MM/YY"
-                maxLength="5"
-                ref={expDateRef}
-                required
-            />
-
-            <label htmlFor="cc-csc">CVV:</label>
-            <input
-                type="text"
-                id="cc-csc"
-                name="cc-csc"
-                autoComplete="cc-csc"
-                placeholder="123"
-                maxLength="4"
-                required
-            />
-
-            <button type="submit">Proceed to Pay</button>
-            </form>
-            <p id="status"></p>
-        </div>
-    </section>
+        </PaymentPageStyles>
     );
 }
 export { PaymentPage };
