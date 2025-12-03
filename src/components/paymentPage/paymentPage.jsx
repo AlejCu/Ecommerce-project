@@ -68,6 +68,8 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
 
             const email = emailInput.value.trim();
             const phone = phoneInput.value.trim();
+            const statusImg = document.getElementById("status-icon");
+
 
             let hasErrors = false;
 
@@ -113,13 +115,25 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
 
             //Final status message
             if (hasErrors) {
-                status.textContent = "Please fill in the required fields marked with a asterisk (*)";
+                status.textContent = "Please fill in the required fields marked with an asterisk (*)";
                 status.style.color = "#f10000ff";
-                return;
+
+                if (statusImg) {
+                    statusImg.style.display = "block";
+                    statusImg.src = "/assets/Img/denied-submit.png";
             }
+
+        return;
+    }
 
             status.textContent = "Form submitted successfully!";
             status.style.color = "green";
+
+            if (statusImg) {
+                statusImg.style.display = "block";
+                statusImg.src = "/assets/Img/auccess-submit.png";
+            }
+
             form.reset();
         };
 
@@ -330,6 +344,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                             </div>
                             <button type="submit">Proceed to Pay</button>
                         </form>
+                        <img id="status-icon" src="/assets/Img/payment-form-default.png" alt="Status Icon" />
                         <p id="status" ref={statusRef}></p>
                     </div>
                     <div className="payment_method-disclaimer">
