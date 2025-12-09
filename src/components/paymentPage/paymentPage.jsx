@@ -57,9 +57,6 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
         //Phone Validator
         const validatePhone = (phone) => /^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/.test(phone);
 
-        cardNumber.addEventListener("input", handleCardInput);
-        expDate.addEventListener("input", handleExpInput);
-
         const handleSubmit = (e) => {
             e.preventDefault();
 
@@ -100,7 +97,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                 setError(emailInput, "*");
                 hasErrors = true;
             } else if (!validateEmail(email)) {
-                setError(emailInput, "Invalid email format.");
+                setError(emailInput, "Invalid email");
                 hasErrors = true;
             }
 
@@ -109,7 +106,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                 setError(phoneInput, "*");
                 hasErrors = true;
             } else if (!validatePhone(phone)) {
-                setError(phoneInput, "Invalid phone number format.");
+                setError(phoneInput, "Invalid phone");
                 hasErrors = true;
             }
 
@@ -198,154 +195,159 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
 
                 <div className="payment_method-container">
                     <div className="payment_method-child-container">
-                    <form id="payment_method-form" autoComplete="on" noValidate ref={formRef}>
                         <h2>Payment Method</h2>
-                        <div className="payment_method-name">
-                            <label htmlFor="cc-name">Cardholder Name: </label>
-                            <input
-                                type="text"
-                                id="cc-name"
-                                name="cc-name"
-                                autoComplete="cc-name"
-                                placeholder="John Doe"
-                                required
-                            />
-                            <span className="payment_method-error"></span>
-                            <FontAwesomeIcon icon={faUser} />
-                        </div>
+                        <form id="payment_method-form" autoComplete="on" noValidate ref={formRef}>
+                            <div className="payment_method-billing">
+                                <h3>Billing Address</h3>
+                                <div className="payment_method-billing-contact">
+                                    <div className="payment_method-billing-container">
+                                            <label htmlFor="billing-name"></label>
+                                            <input
+                                                type="text"
+                                                id="billing-name"
+                                                name="billing-name"
+                                                autoComplete="billing name"
+                                                placeholder="Full Name"
+                                                required
+                                            />
+                                            <span className="payment_method-error"></span>
+                                        </div>
+                                        <div className="payment_method-billing-container">
+                                            <label htmlFor="billing-email"></label>
+                                            <input
+                                                type="email"
+                                                id="billing-email"
+                                                name="billing-email"
+                                                autoComplete="billing email"
+                                                placeholder="email@email.com"
+                                            />
+                                            <span className="payment_method-error"></span>
+                                        </div>
+                                        <div className="payment_method-billing-container">
+                                            <label htmlFor="billing-phone"></label>
+                                            <input
+                                                type="tel"
+                                                id="billing-phone"
+                                                name="billing-phone"
+                                                autoComplete="billing tel"
+                                                placeholder="(123) 456-7890"
+                                            />
+                                            <span className="payment_method-error"></span>
+                                        </div>
+                                    </div>
 
-                        <div className="payment_method-number">
-                            <label htmlFor="cc-number">Card Number: </label>
-                            <input
-                                type="text"
-                                id="cc-number"
-                                name="cc-number"
-                                autoComplete="cc-number"
-                                placeholder="1234 5678 9012 3456"
-                                maxLength="19"
-                                ref={cardNumberRef}
-                                required
-                            />
-                            <span className="payment_method-error"></span>
-                            <FontAwesomeIcon icon={faCreditCard} />
-                        </div>
-
-                        <div className="payment_method-details">
-                            <label htmlFor="cc-exp">Expiration Date: </label>
-                            <input
-                                type="text"
-                                id="cc-exp"
-                                name="cc-exp"
-                                autoComplete="cc-exp"
-                                placeholder="MM/YY"
-                                maxLength="5"
-                                ref={expDateRef}
-                                required
-                            />
-                            <span className="payment_method-error"></span>
-                            <label htmlFor="cc-csc">CVV: </label>
-                            <input
-                                type="text"
-                                id="cc-csc"
-                                name="cc-csc"
-                                autoComplete="cc-csc"
-                                placeholder="123"
-                                maxLength="4"
-                                required
-                            />
-                            <span className="payment_method-error"></span>
-
-                        </div>
-                        <div className="payment_method-billing">
-                            <h3>Billing Address</h3>
-                            <div className="payment_method-billing-contact">
-                                <div className="payment_method-billing-container">
-                                        <label htmlFor="billing-name"></label>
+                                    <div className="payment_method-billing-str">
+                                        <label htmlFor="billing-address"></label>
                                         <input
                                             type="text"
-                                            id="billing-name"
-                                            name="billing-name"
-                                            autoComplete="billing name"
-                                            placeholder="Full Name"
+                                            id="billing-address"
+                                            name="billing-address"
+                                            autoComplete="billing address-line1"
+                                            placeholder="123 Main St"
                                             required
                                         />
                                         <span className="payment_method-error"></span>
                                     </div>
-                                    <div className="payment_method-billing-container">
-                                        <label htmlFor="billing-email"></label>
+                                    <div className="payment_method-billing-CityState">
+                                        <label htmlFor="billing-city"></label>
                                         <input
-                                            type="email"
-                                            id="billing-email"
-                                            name="billing-email"
-                                            autoComplete="billing email"
-                                            placeholder="email@email.com"
+                                            type="text"
+                                            id="billing-city"
+                                            name="billing-city"
+                                            autoComplete="billing address-level2"
+                                            placeholder="City"
+                                            required
+                                        />
+                                        <span className="payment_method-error"></span>
+                                        <label htmlFor="billing-state"></label>
+                                        <input
+                                            type="text"
+                                            id="billing-state"
+                                            name="billing-state"
+                                            autoComplete="billing address-level1"
+                                            placeholder="State"
+                                            required
                                         />
                                         <span className="payment_method-error"></span>
                                     </div>
-                                    <div className="payment_method-billing-container">
-                                        <label htmlFor="billing-phone"></label>
+                                    <div className="payment_method-billing-zip">
+                                        <label htmlFor="billing-zip"></label>
                                         <input
-                                            type="tel"
-                                            id="billing-phone"
-                                            name="billing-phone"
-                                            autoComplete="billing tel"
-                                            placeholder="(123) 456-7890"
+                                            type="text"
+                                            id="billing-zip"
+                                            name="billing-zip"
+                                            autoComplete="billing postal-code"
+                                            placeholder="ZIP Code"
+                                            required
                                         />
                                         <span className="payment_method-error"></span>
                                     </div>
+                                </div>
+                                <div className="payment_method-card-info">
+                                <div className="payment_method-name">
+                                    <label htmlFor="cc-name">Cardholder Name: </label>
+                                    <input
+                                        type="text"
+                                        id="cc-name"
+                                        name="cc-name"
+                                        autoComplete="cc-name"
+                                        placeholder="John Doe"
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                    <FontAwesomeIcon icon={faUser} />
                                 </div>
 
-                                <div className="payment_method-billing-str">
-                                    <label htmlFor="billing-address"></label>
+                                <div className="payment_method-number">
+                                    <label htmlFor="cc-number">Card Number: </label>
                                     <input
                                         type="text"
-                                        id="billing-address"
-                                        name="billing-address"
-                                        autoComplete="billing address-line1"
-                                        placeholder="123 Main St"
+                                        id="cc-number"
+                                        name="cc-number"
+                                        autoComplete="cc-number"
+                                        placeholder="1234 5678 9012 3456"
+                                        maxLength="19"
+                                        ref={cardNumberRef}
+                                        required
+                                    />
+                                    <span className="payment_method-error"></span>
+                                    <FontAwesomeIcon icon={faCreditCard} />
+                                </div>
+
+                                <div className="payment_method-exp">
+                                    <label htmlFor="cc-exp">Expiration Date: </label>
+                                    <input
+                                        type="text"
+                                        id="cc-exp"
+                                        name="cc-exp"
+                                        autoComplete="cc-exp"
+                                        placeholder="MM/YY"
+                                        maxLength="5"
+                                        ref={expDateRef}
                                         required
                                     />
                                     <span className="payment_method-error"></span>
                                 </div>
-                                <div className="payment_method-billing-CityState">
-                                    <label htmlFor="billing-city"></label>
+                                <div className="payment_method-csc">
+                                    <label htmlFor="cc-csc">CVV: </label>
                                     <input
                                         type="text"
-                                        id="billing-city"
-                                        name="billing-city"
-                                        autoComplete="billing address-level2"
-                                        placeholder="City"
-                                        required
-                                    />
-                                    <span className="payment_method-error"></span>
-                                    <label htmlFor="billing-state"></label>
-                                    <input
-                                        type="text"
-                                        id="billing-state"
-                                        name="billing-state"
-                                        autoComplete="billing address-level1"
-                                        placeholder="State"
-                                        required
-                                    />
-                                    <span className="payment_method-error"></span>
-                                </div>
-                                <div className="payment_method-billing-zip">
-                                    <label htmlFor="billing-zip"></label>
-                                    <input
-                                        type="text"
-                                        id="billing-zip"
-                                        name="billing-zip"
-                                        autoComplete="billing postal-code"
-                                        placeholder="ZIP Code"
+                                        id="cc-csc"
+                                        name="cc-csc"
+                                        autoComplete="cc-csc"
+                                        placeholder="123"
+                                        maxLength="4"
                                         required
                                     />
                                     <span className="payment_method-error"></span>
                                 </div>
                             </div>
-                            <button type="submit">Proceed to Pay</button>
-                        </form>
-                        <img id="status-icon" src="/assets/Img/payment-form-default.png" alt="Status Icon" />
-                        <p id="status" ref={statusRef}></p>
+                        </form> 
+                        <button type="submit" form="payment_method-form">Proceed to Pay</button>
+                        <div className="payment_method-status">
+                            <img id="status-icon" src="/assets/Img/payment-form-default.png" alt="Status Icon" />
+                            <p id="status" ref={statusRef}></p>
+                        </div>
                     </div>
                     <div className="payment_method-disclaimer">
                         <h2>Disclaimer</h2>
