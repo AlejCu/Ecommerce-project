@@ -36,17 +36,17 @@ export const ItemDetailsStyles = styled.section`
         margin-left: 40px;
 
         h1 {
-            font-size: 32px;
+            font-size: 27px;
         }
 
         .itemDetails_price {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
             margin: 10px 0;
         }
 
         .itemDetails_description {
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.5;
             max-width: 600px;
             color: #555;
