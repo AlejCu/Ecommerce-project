@@ -5,7 +5,6 @@ export const menuContainer = `
     position: fixed;
     top: 0px;
     height: 100vh;
-    padding: 10px;
     width: 20%;
     color: #000000ff;
     z-index: 3;
@@ -14,6 +13,7 @@ export const menuContainer = `
 export const menuCloseIcon =`
     display: flex;
     flex-direction: column;
+    padding: 10px;
 
     svg {
         width: 8px;
@@ -48,7 +48,7 @@ export const cartButtonStyles = `
     text-align: center;
 
     svg {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     &:hover {
@@ -77,11 +77,6 @@ export const HeaderStyles = styled.header`
         &:hover {
             transform: scale(1.08);
             transition: all 0.2s ease;
-        }
-
-        &:active {
-            transform: scale(0.95);
-            transition: scale 0.2s ease;
         }
     }
 
@@ -139,7 +134,7 @@ export const HeaderStyles = styled.header`
     }
 
     .header_cart-items {
-        margin-top: 20px;
+        margin: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -150,7 +145,7 @@ export const HeaderStyles = styled.header`
         flex-direction: row;
         align-items: center;
         max-width: 246px;
-        margin-bottom: 15px;
+        margin-top: 15px;
 
         img {
             width: 150px;
@@ -158,12 +153,13 @@ export const HeaderStyles = styled.header`
         }            
 
         h2 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
+            margin-bottom: 3px;
         }
 
         p {
-            font-size: 14.5px;
+            font-size: 13.5px;
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
             color: #333;
@@ -219,15 +215,15 @@ export const HeaderStyles = styled.header`
     }
 
     .cart-total {
-        position: sticky;
-        bottom: -10px;
+        position: fixed;
+        bottom: 0;
         background-color: #333;
         color: #ffff;
         padding: 10px;
         text-align: center;
         font-size: 18px;
         font-weight: 600;
-        width: 98%;
+        width: 29vh;
         border-radius: 15px 15px 0 0;
 
         p {
@@ -274,6 +270,30 @@ export const HeaderStyles = styled.header`
 
         nav {
             width: 100%;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            padding: 5px ;
+            width: 100%;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: #dbdbdb;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        li {
+            width: 100%;
+            margin: 15px 0;
+            text-align: center;
         }
     }
 `;
