@@ -55,7 +55,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
             <FontAwesomeIcon icon={faBars} />
         </button>
 
-        <Link className="header_button" to="/">
+        <Link to="/">
             <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
         </Link>
 
@@ -145,18 +145,26 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
             <div className="header_sideMenu-container">
                 <nav>
                     <ul>
-                        <li>
-                            <Link to="/" onClick={toggleSideMenu}>Home <FontAwesomeIcon icon={faHouse} /></Link>
-                        </li>
-                        <li>
-                            <Link to="/" onClick={toggleSideMenu}>Shop <FontAwesomeIcon icon={faBasketShopping} /></Link>
-                        </li>
-                        <li>
-                            <Link to="/disclaimer" onClick={toggleSideMenu}>Discalimer <FontAwesomeIcon icon={faTriangleExclamation} /></Link>
-                        </li>
-                        <li>
-                            <Link to="" onClick={toggleSideMenu}>Contact us <FontAwesomeIcon icon={faPhoneVolume} /></Link>
-                        </li>
+                        <Link to="/" onClick={toggleSideMenu}>
+                            <li>
+                                Home <FontAwesomeIcon icon={faHouse} />
+                            </li>
+                        </Link>
+                        <Link to="/" onClick={toggleSideMenu}>
+                            <li>
+                                Shop <FontAwesomeIcon icon={faBasketShopping} />
+                            </li>
+                        </Link>
+                        <Link to="/disclaimer" onClick={toggleSideMenu}>
+                            <li>
+                                Discalimer <FontAwesomeIcon icon={faTriangleExclamation} />
+                            </li>
+                        </Link>
+                        <Link to="" onClick={toggleSideMenu}>
+                            <li>
+                                Contact us <FontAwesomeIcon icon={faPhoneVolume} />
+                            </li>
+                        </Link>
                     </ul>
                 </nav>
                 <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
