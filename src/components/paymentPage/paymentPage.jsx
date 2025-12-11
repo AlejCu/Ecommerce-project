@@ -110,36 +110,34 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                 hasErrors = true;
             }
 
-            //Final status message
+            //Payment status messages
             if (hasErrors) {
                 status.textContent = "Please fill in the required fields marked with an asterisk (*)";
                 status.style.color = "#f10000ff";
 
                 if (statusImg) {
                     statusImg.style.display = "block";
-                    statusImg.src = "/assets/Img/denied-submit.png";
+                    statusImg.src = "/assets/Img/denied-submit.webp";
             }
 
         return;
     }
 
-            status.textContent = "Form submitted successfully!";
+            status.textContent = "Payment Submitted!";
             status.style.color = "green";
 
             if (statusImg) {
                 statusImg.style.display = "block";
-                statusImg.src = "/assets/Img/auccess-submit.png";
+                statusImg.src = "/assets/Img/success-submit.webp";
             }
 
             form.reset();
         };
 
-    // --- Add Event Listeners ---
     cardNumber.addEventListener("input", handleCardInput);
     expDate.addEventListener("input", handleExpInput);
     form.addEventListener("submit", handleSubmit);
 
-        //Cleanup event listeners on unmount
         return () => {
             cardNumber.removeEventListener("input", handleCardInput);
             expDate.removeEventListener("input", handleExpInput);
@@ -345,7 +343,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         </form> 
                         <button type="submit" form="payment_method-form">Proceed to Pay</button>
                         <div className="payment_method-status">
-                            <img id="status-icon" src="/assets/Img/payment-form-default.png" alt="Status Icon" />
+                            <img id="status-icon" src="/assets/Img/payment-form-default.webp" alt="Status Icon" />
                             <p id="status" ref={statusRef}></p>
                         </div>
                     </div>
