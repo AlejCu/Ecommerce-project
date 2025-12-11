@@ -278,6 +278,10 @@ export const HeaderStyles = styled.header`
             align-items: center;
         }
 
+        svg {
+            font-size: 15px;
+        }
+
         a {
             padding: 5px ;
             width: 100%;
