@@ -4,7 +4,7 @@ import { cartButtonStyles } from '../header/headerStyles.ts';
 export const PaymentPageStyles = styled.section`
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px;
     height: 90vh;
 
     h1 {
@@ -23,6 +23,7 @@ export const PaymentPageStyles = styled.section`
     .payment_main-container {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
     }
 
     .payment_items-card-cont {
@@ -227,13 +228,18 @@ export const PaymentPageStyles = styled.section`
 
     .payment_method-status {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         margin: 50px 0;
 
+        p {
+            margin-left: 15px;
+        }
+
         img {
-            width: 28px;
+            image-rendering: pixelated;
+            width: 200px;
             margin-bottom: 20px;
         }
     }
