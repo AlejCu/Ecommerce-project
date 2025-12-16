@@ -51,6 +51,24 @@ function ShopPage ({ onAddToCart }) {
 
     return (
         <ShopStyles>
+            <div className="banner_container">
+                <div className="banner_text">
+                    <h2>Pixel Love! Panda Style!</h2>
+                </div>
+                <img src="/assets/Img/banner.webp" alt="Clothes banner" fetchPriority='high'/>
+            </div>
+
+            <div className="promo_container">
+                <div className="promo_container-left">
+                    <img src="/assets/Img/site-logo.webp" alt="Panda logo" fetchPriority='high'/>
+                </div>
+
+                <div className="promo_container-right">
+                    <h1>Pandin Clothing Shop</h1>
+                    <p> Find Your Style. One Pixel at a Time.</p>
+                </div>
+            </div>
+
             <h2>Shop</h2>
 
             <div className="filters">
@@ -83,7 +101,7 @@ function ShopPage ({ onAddToCart }) {
 
                         <div className="product_image">
                             <Link to={`/item/${product.id}`} data-id={product.id} key={product.id}>
-                                <img src={product.image} alt={product.name}/>
+                                <img src={product.image} alt={product.name} loading='lazy'/>
                             </Link>
                         </div>
 
