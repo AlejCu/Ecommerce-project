@@ -22,8 +22,9 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
         const expDate = expDateRef.current;
         const form = document.getElementById("payment_method-form");
         const status = document.getElementById("status");
+        const phoneInput = document.getElementById("billing-phone");
 
-        if (!cardNumber || !expDate || !form || !status) return;
+        if (!cardNumber || !expDate || !form || !status || !phoneInput) return;
 
         //Formats the card numbers to only allow numbers and display in groups of 4
         const handleCardInput = (e) => {
@@ -48,6 +49,22 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
             if (value.length >= 3) {
                 value = value.substring(0, 2) + "/" + value.substring(2, 4);
             }
+            e.target.value = value;
+        };
+
+        //Formats phone number to be 10 characters long with a format of (123) 456-7890
+        const handlePhoneInput = (e) => {
+            let value = e.target.value.replace(/\D/g, "");
+            value = value.substring(0, 10);
+
+            if (value.length > 6) {
+                value = `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
+            } else if (value.length > 3) {
+                value = `(${value.substring(0, 3)}) ${value.substring(3)}`;
+            } else if (value.length > 0) {
+                value = `(${value}`;
+            }
+
             e.target.value = value;
         };
 
@@ -137,13 +154,19 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
     cardNumber.addEventListener("input", handleCardInput);
     expDate.addEventListener("input", handleExpInput);
     form.addEventListener("submit", handleSubmit);
+    phoneInput.addEventListener("input", handlePhoneInput);
 
         return () => {
             cardNumber.removeEventListener("input", handleCardInput);
             expDate.removeEventListener("input", handleExpInput);
+            phoneInput.removeEventListener("input", handlePhoneInput);
             form.removeEventListener("submit", handleSubmit);
         };
     }, []);
+
+    //Format currenct for cart items
+    const formatCurrency = (value) =>
+        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
 
     return (
         <PaymentPageStyles>
@@ -159,7 +182,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         {(cartItems || []).map((item) => (
                         <div className="payment_items-card" key={item.id + item.size}>
                             <Link to={`/item/${item.id}`} data-id={item.id} key={item.id}>
-                                <img src={item.image} alt={item.name} />
+                                <img src={item.image} alt={item.name} fetchPriority="high"/>
                             </Link>
                             <div className="payment_items-info">
                                 <h3>{item.name}</h3>
@@ -187,7 +210,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         ))}
                     </div>
                     <div className="payment_items-total">
-                        <p>Total: ${cartTotal.toFixed(2)}</p>
+                        <p>Total: {formatCurrency(cartTotal.toFixed(2))}</p>
                     </div>
                 </div>
 
@@ -229,6 +252,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                                                 name="billing-phone"
                                                 autoComplete="billing tel"
                                                 placeholder="(123) 456-7890"
+                                                maxLength="14"
                                             />
                                             <span className="payment_method-error"></span>
                                         </div>
@@ -343,7 +367,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         </form> 
                         <button type="submit" form="payment_method-form">Proceed to Pay</button>
                         <div className="payment_method-status">
-                            <img id="status-icon" src="/assets/Img/payment-form-default.webp" alt="Status Icon" />
+                            <img id="status-icon" src="/assets/Img/payment-form-default.webp" alt="Status Icon" fetchPriority="high"/>
                             <p id="status" ref={statusRef}></p>
                         </div>
                     </div>
