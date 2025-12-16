@@ -285,11 +285,11 @@ export const HeaderStyles = styled.header`
         a {
             padding: 5px ;
             width: 100%;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease-out;
 
             &:hover {
                 background-color: #dbdbdb;
-                transition: all 0.2s ease;
+                transition: all 0.2s ease-out;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
         }

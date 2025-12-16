@@ -56,7 +56,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
         </button>
 
         <Link to="/">
-            <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
+            <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" fetchPriority="high"/>
         </Link>
 
         <div className="header_container-left">
@@ -86,7 +86,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                 cartItems.map((item) => (
                     <div key={item.id + item.size} className="cart-item">
                         <Link to={`/item/${item.id}`} data-id={item.id} key={item.id} onClick={toggleCart}>
-                            <img src={item.image} alt={item.name}/>
+                            <img src={item.image} alt={item.name} loading="lazy"/>
                         </Link>
                         <div className="header_cart-items-info">
                             <h2>{item.name}</h2>
@@ -157,7 +157,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                         </Link>
                         <Link to="/disclaimer" onClick={toggleSideMenu}>
                             <li>
-                                Discalimer <FontAwesomeIcon icon={faTriangleExclamation} />
+                                Disclaimer <FontAwesomeIcon icon={faTriangleExclamation} />
                             </li>
                         </Link>
                         <Link to="" onClick={toggleSideMenu}>
@@ -167,7 +167,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                         </Link>
                     </ul>
                 </nav>
-                <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda"/>
+                <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" loading="lazy"/>
             </div>
         </div>
 
