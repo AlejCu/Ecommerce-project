@@ -3,8 +3,15 @@ import { DisclaimerStyles } from './disclaimerStyles.ts';
 function Disclaimer() {
     return (
         <DisclaimerStyles>
+
+            <div className="disclaimer_img-container">
+                <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" fetchPriority='high'/>
+            </div>
+            
+            <h1>Disclaimer</h1>
+
             <p>
-                This website is a fictional demonstration project created solely for educational, illustrative, and portfolio purposes. It does not represent a real store, business, or commercial entity. Any resemblance to actual brands, companies, or products—whether existing or not—is purely coincidental.
+                This website is a demonstration project created solely for educational, illustrative, and portfolio purposes. It does not represent a real store, business, or commercial entity. Any resemblance to actual brands, companies, or products—whether existing or not—is purely coincidental.
             </p>
             <p>
                 All items, descriptions, prices, images, and product details displayed on this site are entirely fictional. None of the products showcased are available for purchase, and no transactions, orders, or payments can be made through this website. Any interactive features, such as shopping cart functionality, checkout simulations, or form submissions, are implemented exclusively for testing, learning, and demonstration of user interface behavior.
@@ -19,7 +26,7 @@ function Disclaimer() {
                 <li>No products, services, or transactions are real or fulfillable.</li>
                 <li>The site is intended to showcase design, development, and user interface concepts only.</li>
             </ul>
-            <p>If you have any questions regarding this demonstration project, feel free to contact the creator or developer of the site.</p>
+            <p>If you have any questions regarding this project, feel free to contact the <a href="https://github.com/AlejCu" target='_blank' rel='noopener noreferrer'>developer</a> of the site.</p>
         </DisclaimerStyles>
     );
 }
