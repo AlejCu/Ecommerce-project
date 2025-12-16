@@ -8,6 +8,30 @@ export const ShopStyles = styled.section`
         font-size: 3.5em;
     }
 
+    /*Banner Styling*/
+
+    .banner_container {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .banner_text {
+        position: absolute;
+        top: 18%;
+        left: 27%;
+        z-index: 1;
+        color: #ffffff;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.2em;
+        font-weight: 700;
+        padding: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
     /*Filter section styling*/
     .filters {
         display: flex;
