@@ -190,4 +190,36 @@ export const ItemDetailsStyles = styled.section`
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     }
+
+    @media (max-width: 900px) {
+        .itemDetails_main-container {
+            flex-direction: column;
+        }
+
+        .itemDetails_container-right {
+            margin-top: 20px;
+            margin-left: 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        .itemDetails_container-left {
+            img {
+                width: 300px;
+            }
+        }
+
+    }
+
+    @media (max-width: 500px) {
+        .itemDetails_recommendations-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .itemDetails_recommendations-section {
+            height: 500px;
+        }
+
+    }
 `;
