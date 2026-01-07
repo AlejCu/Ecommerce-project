@@ -25,7 +25,6 @@ export const ShopStyles = styled.section`
         left: 27%;
         z-index: 1;
         color: #ffffff;
-        font-family: "Roboto", sans-serif;
         font-size: 1.2em;
         font-weight: 700;
         padding: 20px;
