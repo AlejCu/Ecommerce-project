@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PaymentPageStyles } from './paymentPageStyles.ts';
 import { Link } from 'react-router-dom';
+import { promoCodes } from '../../data/products.ts';
 
 //icon imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +17,39 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
     const expDateRef = useRef(null);
     const formRef = useRef(null);
     const statusRef = useRef(null);
+
+    //States to handle the promo code input and discount
+    const [promoInput, setPromoInput] = useState("");
+    const [discountPercent, setDiscountPercent] = useState(null);
+    const [promoError, setPromoError] = useState("");
+
+    //Calculate the discounted total if a valid promo code is applied
+    const discountedTotal =
+    discountPercent !== null
+        ? cartTotal * (1 - discountPercent / 100)
+        : cartTotal;
+
+    //Effect to validate the promo code entered
+    useEffect(() => {
+        if (!promoInput.trim()) {
+            setDiscountPercent(null);
+            setPromoError("");
+            return;
+        }
+
+        const promo = promoCodes.find(
+            (p) => p.code === promoInput.trim().toUpperCase()
+        );
+
+        if (!promo) {
+            setDiscountPercent(null);
+            setPromoError("Invalid promo code");
+            return;
+        }
+
+        setPromoError("");
+        setDiscountPercent(promo.discountPercentage);
+    }, [promoInput]);
 
     useEffect(() => {
         const cardNumber = cardNumberRef.current;
@@ -209,8 +243,16 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         </div>
                         ))}
                     </div>
-                    <div className="payment_items-total">
-                        <p>Total: {formatCurrency(cartTotal.toFixed(2))}</p>
+                    <div className="payment_items-total-main">
+                        <div className="payment_items-total-cont">
+                            <p>Total: {formatCurrency(cartTotal.toFixed(2))}</p>
+                            {discountPercent !== null ? (
+                                <>
+                                    <p className="payment_items-disc-txt">Discount: <span>-{discountPercent}%</span></p>
+                                    <p className="payment_items-disc-txt">Total: {formatCurrency(discountedTotal.toFixed(2))}</p>
+                                </>
+                                ) : null}
+                        </div>
                     </div>
                 </div>
 
@@ -305,15 +347,16 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                                         <span className="payment_method-error"></span>
                                     </div>
                                 </div>
-                                <div className="payment_method-card-info">
+                            <div className="payment_method-card-info">
+                                <h3>Billing Address</h3>
                                 <div className="payment_method-name">
-                                    <label htmlFor="cc-name">Cardholder Name: </label>
+                                    <label htmlFor="cc-name"></label>
                                     <input
                                         type="text"
                                         id="cc-name"
                                         name="cc-name"
                                         autoComplete="cc-name"
-                                        placeholder="John Doe"
+                                        placeholder="Cardholder Name"
                                         required
                                     />
                                     <span className="payment_method-error"></span>
@@ -321,7 +364,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                                 </div>
 
                                 <div className="payment_method-number">
-                                    <label htmlFor="cc-number">Card Number: </label>
+                                    <label htmlFor="cc-number"></label>
                                     <input
                                         type="text"
                                         id="cc-number"
@@ -337,13 +380,13 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                                 </div>
 
                                 <div className="payment_method-exp">
-                                    <label htmlFor="cc-exp">Expiration Date: </label>
+                                    <label htmlFor="cc-exp"></label>
                                     <input
                                         type="text"
                                         id="cc-exp"
                                         name="cc-exp"
                                         autoComplete="cc-exp"
-                                        placeholder="MM/YY"
+                                        placeholder="Expiration Date: MM/YY"
                                         maxLength="5"
                                         ref={expDateRef}
                                         required
@@ -351,17 +394,32 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                                     <span className="payment_method-error"></span>
                                 </div>
                                 <div className="payment_method-csc">
-                                    <label htmlFor="cc-csc">CVV: </label>
+                                    <label htmlFor="cc-csc"></label>
                                     <input
                                         type="text"
                                         id="cc-csc"
                                         name="cc-csc"
                                         autoComplete="cc-csc"
-                                        placeholder="123"
+                                        placeholder="CVV: 123"
                                         maxLength="4"
                                         required
                                     />
                                     <span className="payment_method-error"></span>
+                                </div>
+                                <div className="payment_method-discount">
+                                    <label htmlFor="discount-code"></label>
+                                    <input
+                                        type="text"
+                                        id="discount-code"
+                                        name="discount-code"
+                                        autoComplete="off"
+                                        placeholder="Enter Promo Code"
+                                        value={promoInput}
+                                        onChange={(e) => setPromoInput(e.target.value)}
+                                    />
+                                    {promoError && (
+                                        <span className="payment_method-error">{promoError}</span>
+                                    )}
                                 </div>
                             </div>
                         </form> 

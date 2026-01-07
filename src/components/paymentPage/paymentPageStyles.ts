@@ -115,15 +115,32 @@ export const PaymentPageStyles = styled.section`
         }
     }
 
-    .payment_items-total {
-        font-size: 18px;
-        font-weight: 700;
+    .payment_items-total-main {
+        font-size: 15px;
+        min-height: 40px;
+        font-weight: 600;
         display: flex;
         justify-content: flex-end;
         background-color: #333;
         color: #ffff;
         padding: 10px 20px;
         border-radius: 0 0 15px 15px;
+
+        .payment_items-disc-txt {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 500;
+
+            span {
+                font-size: 13px;
+                color: #9de64e;
+            }
+        }
+    }
+
+    .payment_items-total-cont {
+        display: flex;
+        flex-direction: column;
     }
 
     /* Payment Form */
@@ -178,6 +195,10 @@ export const PaymentPageStyles = styled.section`
         display: flex;
         flex-direction: column;
 
+        h3 {
+            margin-bottom: 10px;
+        }
+
         button {
             ${cartButtonStyles}
             padding: 12px;
@@ -193,7 +214,7 @@ export const PaymentPageStyles = styled.section`
         }
     }
 
-    .payment_method-number, payment_method-name {
+    .payment_method-number, .payment_method-name {
         input {
             width: 300px;
         }
@@ -209,10 +230,6 @@ export const PaymentPageStyles = styled.section`
     }
 
     .payment_method-billing {
-
-        h3 {
-            margin-bottom: 10px;
-        }
 
         input {
             width: 300px;
