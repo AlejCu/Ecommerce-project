@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const DisclaimerStyles = styled.div`
     padding: 80px;
     font-size: 14px;
-    height: 75vh;
     
     p, ul {
-        margin-bottom: 15px;
+        margin: 20px;
     }
 
     li {
