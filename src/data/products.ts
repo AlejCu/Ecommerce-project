@@ -1,3 +1,14 @@
+export const promoCodes = [
+    {
+        code: 'PANDA20',
+        discountPercentage: 20,
+    },
+    {
+        code: 'PAND1N5',
+        discountPercentage: 15,
+    },
+];
+
 export const products = [
     {
         id: '1',
