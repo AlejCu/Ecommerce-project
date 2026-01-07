@@ -25,4 +25,13 @@ export const FooterStyles = styled.footer`
             }
         }
     }
+
+    @media (max-width: 1260px) {
+        flex-direction: column-reverse;
+        justify-content: center;
+        text-align: center;
+        gap: 30px;
+        padding: 30px;
+        height: auto;
+    }
 `;
