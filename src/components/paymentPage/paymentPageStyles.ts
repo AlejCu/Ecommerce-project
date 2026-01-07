@@ -5,7 +5,6 @@ export const PaymentPageStyles = styled.section`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    height: 90vh;
 
     h1 {
         font-size: 24px;
@@ -258,6 +257,60 @@ export const PaymentPageStyles = styled.section`
             image-rendering: pixelated;
             width: 200px;
             margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 1360px) {
+        .payment_main-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment_items-container {
+            margin-bottom: 50px;
+        }
+    }
+
+    @media (max-width: 870px) {
+
+        h2, h1 {
+            text-align: center;
+        }
+
+        .payment_items-card-cont {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: 230px;
+            }
+        }
+
+        #payment_method-form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment_method-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 0;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .payment_method-status {
+            flex-direction: column;
+
+            img {
+                width: 150px;
+            }
         }
     }
 `;
