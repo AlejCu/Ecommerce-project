@@ -282,6 +282,7 @@ export const PaymentPageStyles = styled.section`
             justify-content: center;
             flex-direction: column;
             align-items: center;
+            min-width: auto;
 
             img {
                 width: 230px;

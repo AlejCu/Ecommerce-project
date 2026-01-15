@@ -5,7 +5,7 @@ export const menuContainer = `
     position: fixed;
     top: 0px;
     height: 100vh;
-    width: 20%;
+    width: 330px;
     color: #000000ff;
     z-index: 3;
 `;
@@ -81,7 +81,7 @@ export const HeaderStyles = styled.header`
     }
 
     img {
-        width: 80px;
+        width: 60px;
         image-rendering: pixelated;
     }
 
@@ -95,7 +95,7 @@ export const HeaderStyles = styled.header`
 
         span {
             position: absolute;
-            top: 22px;
+            top: 14px;
             right: 13px;
             background-color: #217de6ff;
             color: white;
@@ -124,7 +124,7 @@ export const HeaderStyles = styled.header`
     .header_cart-close {
         ${menuContainer}
         right: -1000px;
-        transition: right 0.5s ease;
+        transition: right 0.5s ease-in;
         overflow-y: scroll;
     }
 
@@ -251,7 +251,7 @@ export const HeaderStyles = styled.header`
     .header_sideMenu-close {
         ${menuContainer}
         left: -1000px;
-        transition: left 0.5s ease;
+        transition: left 0.5s ease-in;
     }
 
     .header_sideMenu-hide-icon {
@@ -285,11 +285,11 @@ export const HeaderStyles = styled.header`
         a {
             padding: 5px ;
             width: 100%;
-            transition: all 0.3s ease-out;
+            transition: all 0.2s ease;
 
             &:hover {
                 background-color: #dbdbdb;
-                transition: all 0.2s ease-out;
+                transition: all 0.2s ease;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
         }
@@ -298,6 +298,12 @@ export const HeaderStyles = styled.header`
             width: 100%;
             margin: 15px 0;
             text-align: center;
+        }
+    }
+
+    @media (max-width: 600px) {
+        img {
+            width: 50px;
         }
     }
 `;
