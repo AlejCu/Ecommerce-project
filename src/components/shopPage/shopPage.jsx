@@ -58,17 +58,6 @@ function ShopPage ({ onAddToCart }) {
                 <img src="/assets/Img/banner.webp" alt="Clothes banner" fetchPriority='high'/>
             </div>
 
-            <div className="promo_container">
-                <div className="promo_container-left">
-                    <img src="/assets/Img/site-logo.webp" alt="Panda logo" fetchPriority='high'/>
-                </div>
-
-                <div className="promo_container-right">
-                    <h1>Pandin Clothing Shop</h1>
-                    <p> Find Your Style. One Pixel at a Time.</p>
-                </div>
-            </div>
-
             <h2>Shop</h2>
 
             <div className="filters">
@@ -125,6 +114,24 @@ function ShopPage ({ onAddToCart }) {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="promo_container">
+                <div className="promo_container-left">
+                    <div className="promo_container-text">
+                        <h1>Pandin Clothing Shop</h1>
+                        <p> Find Your Style. One Pixel at a Time.</p>
+
+                        <div className="promo_container-code">
+                            <h2>Use the promo code: "PANDA20"</h2>
+                            <p>20% off at checkout!!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="promo_container-right">
+                    <img src="/assets/Img/promo20.webp" alt="Panda logo" fetchPriority='high'/>
+                </div>
             </div>
         </ShopStyles>
     );

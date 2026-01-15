@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
 export const ShopStyles = styled.section`
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0); }
+    }
+
     padding: 10px;
 
     h2 {
-        padding-left: 10px;
         font-size: 3.5em;
     }
 
@@ -15,7 +21,7 @@ export const ShopStyles = styled.section`
         height: 300px;
         overflow: hidden;
         border-radius: 25px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
@@ -29,6 +35,65 @@ export const ShopStyles = styled.section`
         font-weight: 700;
         padding: 20px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    /*Promo section*/
+
+    .promo_container {
+        display: grid;
+        grid-template-columns: .5fr .4fr;
+        gap: 50px;
+        margin-top: 80px;
+        padding: 40px;
+    }
+
+    .promo_container-right {
+        width: 100%;
+        border-radius: 25px;
+        overflow: hidden;
+        animation: float 2s ease-in-out infinite;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            image-rendering: pixelated;
+        }
+    }
+
+    .promo_container-img {
+        border-radius: 25px;
+        animation: float 2s ease-in-out infinite
+        overflow: hidden;
+    }
+
+    .promo_container-code {
+        margin-top: 20px;
+    }
+
+    .promo_container-left {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-family: "Roboto", sans-serif;
+        padding: 30px;
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #ff5733;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #333333;
+        }
     }
 
     /*Filter section styling*/
@@ -91,7 +156,7 @@ export const ShopStyles = styled.section`
     .product_section-cont {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         
         img {
             width: 250px;
@@ -111,6 +176,7 @@ export const ShopStyles = styled.section`
 
     .product_image {
         border-radius: 25px;
+        text-align: center;
         transition: background-color 0.3s ease;
 
         &:hover {
@@ -201,6 +267,63 @@ export const ShopStyles = styled.section`
             color: #000000;
             font-weight: 600;
             font-size: 14px;
+        }
+    }
+
+
+    @media (max-width: 1310px) {
+        .promo_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2, h1 {
+                font-size: 1.2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+
+        .promo_container-right {
+            max-width: 500px;
+        }
+
+        .banner_text {
+            font-size: .9em;
+            left: 25%;
+        }
+    }
+
+    @media (max-width: 900px) {
+       .banner_text {
+            left: 16%;
+        }
+
+        .product_container {
+            padding: 20px 5px;
+            max-width: 230px;
+            min-width: 230px;
+
+            img {
+                width: 200px;
+            }
+        }
+
+        .product_info {
+            min-height: 75px;
+        }
+
+        .product_info-right {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    @media (max-width: 710px) {
+        .banner_text {
+            top: 15%;
         }
     }
 `;
