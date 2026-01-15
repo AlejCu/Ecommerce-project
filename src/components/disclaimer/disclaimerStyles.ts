@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const DisclaimerStyles = styled.div`
-    padding: 80px;
-    font-size: 14px;
+    padding: 70px;
+    font-family: 'Arial', sans-serif;
     
     p, ul {
         margin: 20px;
@@ -27,9 +27,17 @@ export const DisclaimerStyles = styled.div`
         text-align: center;
 
         img {
-            margin-bottom: 20px;
-            width: 200px;
+            margin-bottom: 10px;
+            width: 300px;
             image-rendering: pixelated;
         }
+    }
+
+    .disclaimer_text-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #f0f0f0ff;
+        border-radius: 25px;
+        padding: 30px;
     }
 `;
