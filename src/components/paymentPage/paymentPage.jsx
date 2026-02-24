@@ -168,7 +168,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
 
                 if (statusImg) {
                     statusImg.style.display = "block";
-                    statusImg.src = "/assets/Img/denied-submit.webp";
+                    statusImg.src = "./assets/Img/denied-submit.webp";
             }
 
         return;
@@ -179,7 +179,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
 
             if (statusImg) {
                 statusImg.style.display = "block";
-                statusImg.src = "/assets/Img/success-submit.webp";
+                statusImg.src = "./assets/Img/success-submit.webp";
             }
 
             form.reset();
@@ -425,7 +425,7 @@ function PaymentPage({ cartItems, cartTotal, dispatch }) {
                         </form> 
                         <button type="submit" form="payment_method-form">Proceed to Pay</button>
                         <div className="payment_method-status">
-                            <img id="status-icon" src="/assets/Img/payment-form-default.webp" alt="Status Icon" fetchPriority="high"/>
+                            <img id="status-icon" src="./assets/Img/payment-form-default.webp" alt="Status Icon" fetchPriority="high"/>
                             <p id="status" ref={statusRef}></p>
                         </div>
                     </div>

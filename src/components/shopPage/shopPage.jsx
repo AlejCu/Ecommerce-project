@@ -52,7 +52,7 @@ function ShopPage ({ onAddToCart }) {
     return (
         <ShopStyles>
             <div className="banner_container">
-                <img src="/assets/Img/banner.webp" alt="Clothes banner" fetchPriority='high'/>
+                <img src="./assets/Img/banner.webp" alt="Clothes banner" fetchPriority='high'/>
             </div>
 
             <h2>Shop</h2>
@@ -127,7 +127,7 @@ function ShopPage ({ onAddToCart }) {
                 </div>
 
                 <div className="promo_container-right">
-                    <img src="/assets/Img/promo20.webp" alt="Panda logo" fetchPriority='high'/>
+                    <img src="./assets/Img/promo20.webp" alt="Panda logo" fetchPriority='high'/>
                 </div>
             </div>
         </ShopStyles>

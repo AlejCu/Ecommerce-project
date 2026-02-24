@@ -5,7 +5,7 @@ function Disclaimer() {
         <DisclaimerStyles>
 
             <div className="disclaimer_img-container">
-                <img src="/assets/Img/disclaimer.webp" alt="Pandin Logo with a pixel art panda" fetchPriority='high'/>
+                <img src="./assets/Img/disclaimer.webp" alt="Pandin Logo with a pixel art panda" fetchPriority='high'/>
             </div>
             
             <div className="disclaimer_text-container">

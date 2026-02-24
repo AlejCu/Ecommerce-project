@@ -167,7 +167,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                         </Link>
                     </ul>
                 </nav>
-                <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" loading="lazy"/>
+                <img src="./assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" loading="lazy"/>
             </div>
         </div>
 
