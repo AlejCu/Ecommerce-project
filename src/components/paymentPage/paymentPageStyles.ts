@@ -1,0 +1,317 @@
+import styled from 'styled-components';
+import { cartButtonStyles } from '../header/headerStyles.ts';
+
+export const PaymentPageStyles = styled.section`
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    /* Items Area */
+    .payment_main-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .payment_items-card-cont {
+        overflow-y: auto;
+        max-height: 70vh;
+        min-height: 70vh;
+        min-width: 50vh;
+    }
+
+    .payment_items-container {
+        display: flex;
+        flex-direction: column;
+        padding-right: 10px;
+    }
+
+    .payment_items-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        svg {
+            font-size: 15px;
+            margin:0 0 15px 5px;
+        }
+    }
+
+    .payment_items-card {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .payment_items-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 15px;
+    
+        img {
+            width: 270px;
+            image-rendering: pixelated;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+                transition: transform 0.3s ease;
+            }
+        }            
+    
+        h2 {
+            font-size: 17px;
+            font-weight: 600;
+        }
+    
+        p {
+            font-size: 14.5px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+    
+    .payment_items-quantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+        button {
+            ${cartButtonStyles}
+            padding: 8px;
+            background-color: #ffff;
+        }
+    }
+    
+    .payment_items-remove {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+        button {
+            ${cartButtonStyles}
+            padding: 3px 20px;
+            background-color: #333;
+            color: #ffff;
+    
+            &:active {
+                transform: scale(1.05);
+                transition: scale 0.4s ease;
+            }
+        }
+    }
+
+    .payment_items-total-main {
+        font-size: 15px;
+        min-height: 40px;
+        font-weight: 600;
+        display: flex;
+        justify-content: flex-end;
+        background-color: #333;
+        color: #ffff;
+        padding: 10px 20px;
+        border-radius: 0 0 15px 15px;
+
+        .payment_items-disc-txt {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 500;
+
+            span {
+                font-size: 13px;
+                color: #9de64e;
+            }
+        }
+    }
+
+    .payment_items-total-cont {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Payment Form */
+    #payment_method-form {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        margin-bottom: 20px;
+
+        label {
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+
+            &:focus {
+                outline: none;
+                border-color: #333;
+            }
+        }
+    }
+
+    .payment_method-error {
+        color: #f10000ff;
+        margin: 8px;
+    }
+
+    .payment_method-details {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+        input {
+            width: 100px;
+        }
+    }
+
+    .payment_method-Container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .payment_method-child-container {
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            ${cartButtonStyles}
+            padding: 12px;
+            width: 150px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: #333;
+                color: #fff;
+            }
+        }
+    }
+
+    .payment_method-number, .payment_method-name {
+        input {
+            width: 300px;
+        }
+    }
+
+    .payment_method-container {
+        padding-left: 90px;
+    }
+
+    .payment_method-billing-contact {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .payment_method-billing {
+
+        input {
+            width: 300px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .payment_method-billing-CityState {
+        input {
+            width: 147px;
+        }
+    }
+
+    .payment_method-status {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 50px 0;
+
+        p {
+            margin-left: 15px;
+        }
+
+        img {
+            image-rendering: pixelated;
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 1360px) {
+        .payment_main-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment_items-container {
+            margin-bottom: 50px;
+        }
+    }
+
+    @media (max-width: 870px) {
+
+        h2, h1 {
+            text-align: center;
+        }
+
+        .payment_items-card-cont {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-width: auto;
+
+            img {
+                width: 230px;
+            }
+        }
+
+        #payment_method-form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment_method-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 0;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .payment_method-status {
+            flex-direction: column;
+
+            img {
+                width: 150px;
+            }
+        }
+    }
+`;
