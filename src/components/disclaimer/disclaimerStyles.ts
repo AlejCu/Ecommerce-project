@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 export const DisclaimerStyles = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 70px;
     font-family: 'Arial', sans-serif;
+    min-height: 80vh;
     
     p, ul {
         margin: 20px;
@@ -27,7 +31,6 @@ export const DisclaimerStyles = styled.div`
         text-align: center;
 
         img {
-            margin-bottom: 10px;
             width: 300px;
             image-rendering: pixelated;
         }
@@ -39,5 +42,10 @@ export const DisclaimerStyles = styled.div`
         background-color: #f0f0f0ff;
         border-radius: 25px;
         padding: 30px;
+    }
+
+    @media (max-width: 830px) {
+        flex-direction: column;
+        padding: 20px;
     }
 `;
