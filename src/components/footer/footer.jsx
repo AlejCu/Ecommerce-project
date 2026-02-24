@@ -10,9 +10,13 @@ function Footer () {
         <FooterStyles>
 
             <div className="footer_icons">
-                <FontAwesomeIcon icon={faLinkedin} />
-
-                <FontAwesomeIcon icon={faGithub} />
+                <a href="https://www.linkedin.com/in/alex-curiel-front-end-developer/?locale=en" target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+                
+                <a href="https://github.com/AlejCu" target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={faGithub} />
+                </a>
             </div>
 
             <div className="footer_contact">
