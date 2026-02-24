@@ -56,7 +56,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
         </button>
 
         <Link to="/">
-            <img src="/assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" fetchPriority="high"/>
+            <img src="./assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" fetchPriority="high"/>
         </Link>
 
         <div className="header_container-left">
