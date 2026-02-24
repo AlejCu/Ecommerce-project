@@ -52,9 +52,6 @@ function ShopPage ({ onAddToCart }) {
     return (
         <ShopStyles>
             <div className="banner_container">
-                <div className="banner_text">
-                    <h2>Pixel Love! Panda Style!</h2>
-                </div>
                 <img src="/assets/Img/banner.webp" alt="Clothes banner" fetchPriority='high'/>
             </div>
 

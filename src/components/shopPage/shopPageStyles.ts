@@ -23,18 +23,13 @@ export const ShopStyles = styled.section`
         border-radius: 25px;
         margin-bottom: 50px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
 
-    .banner_text {
-        position: absolute;
-        top: 18%;
-        left: 27%;
-        z-index: 1;
-        color: #ffffff;
-        font-size: 1.2em;
-        font-weight: 700;
-        padding: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
     }
 
     /*Promo section*/
@@ -289,18 +284,9 @@ export const ShopStyles = styled.section`
         .promo_container-right {
             max-width: 500px;
         }
-
-        .banner_text {
-            font-size: .9em;
-            left: 25%;
-        }
     }
 
     @media (max-width: 900px) {
-       .banner_text {
-            left: 16%;
-        }
-
         .product_container {
             padding: 20px 5px;
             max-width: 230px;
@@ -318,12 +304,6 @@ export const ShopStyles = styled.section`
         .product_info-right {
             display: flex;
             flex-direction: row;
-        }
-    }
-
-    @media (max-width: 710px) {
-        .banner_text {
-            top: 15%;
         }
     }
 `;
