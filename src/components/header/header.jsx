@@ -56,7 +56,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
         </button>
 
         <Link to="/">
-            <img src="./assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" fetchPriority="high"/>
+            <img src={process.env.PUBLIC_URL + "/assets/Img/site-logo.webp"} alt="Pandin Logo with a pixel art panda" fetchPriority="high"/>
         </Link>
 
         <div className="header_container-left">
@@ -167,7 +167,7 @@ function Header ({ cartCount, cartItems, cartTotal, dispatch }) {
                         </Link>
                     </ul>
                 </nav>
-                <img src="./assets/Img/site-logo.webp" alt="Pandin Logo with a pixel art panda" loading="lazy"/>
+                <img src={process.env.PUBLIC_URL + "/assets/Img/site-logo.webp"} alt="Pandin Logo with a pixel art panda" loading="lazy"/>
             </div>
         </div>
 
