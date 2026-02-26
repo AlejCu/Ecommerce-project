@@ -101,7 +101,7 @@ function App() {
   return (
     <React.StrictMode>
       <GlobalStyles />
-      <BrowserRouter>
+      <HashRouter>
         <Header cartCount={cartCount} cartItems={cartItems} cartTotal={cartTotal} dispatch={dispatch} />
           <Routes>
             <Route path="/" element={<ShopPage onAddToCart={handleAddToCart} />} />
@@ -110,7 +110,7 @@ function App() {
             <Route path="/disclaimer" element={<Disclaimer />} />
           </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </React.StrictMode>
   );
 }
