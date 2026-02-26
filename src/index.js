@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom/client';
 import { GlobalStyles } from './globalStyles.ts';
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router";
 
 // Components imports
 import { Footer } from './components/footer/footer.jsx';
